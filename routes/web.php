@@ -14,3 +14,23 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+
+Route::get('/StudentController/login','StudentController@login');
+Route::post('/StudentController/dologin','StudentController@dologin');
+
+Route::group(['middleware' => ['login']], function () {
+    Route::get('/StudentController/index','StudentController@index');
+    Route::get('/StudentController/add','StudentController@add');
+    Route::post('/StudentController/doadd','StudentController@doadd');
+    Route::get('/StudentController/delete','StudentController@delete');
+    Route::get('/StudentController/update','StudentController@update');
+    Route::get('/StudentController/doupdate','StudentController@doupdate');
+    Route::get('/StudentController/del','StudentController@del');
+    Route::get('/StudentController/register','StudentController@register');
+    Route::post('/StudentController/doregister','StudentController@doregister');
+    Route::get('/StudentController/upload','StudentController@upload');
+    Route::post('/StudentController/doupload','StudentController@doupload');
+});
