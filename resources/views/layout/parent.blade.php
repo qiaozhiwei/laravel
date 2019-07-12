@@ -375,6 +375,7 @@
 	<!-- end loader -->
 	
 	<!-- footer -->
+	@section('footer')
 	<div class="footer">
 		<div class="container">
 			<div class="about-us-foot">
@@ -393,6 +394,7 @@
 			</div>
 		</div>
 	</div>
+	@show
 	<!-- end footer -->
 	
 	<!-- scripts -->

@@ -33,4 +33,8 @@ Route::group(['middleware' => ['login']], function () {
     Route::post('/StudentController/doregister','StudentController@doregister');
     Route::get('/StudentController/upload','StudentController@upload');
     Route::post('/StudentController/doupload','StudentController@doupload');
+
+    //商品
+    Route::get('/Goods/index','GoodsController@index');
+    Route::get('/Goods/add','GoodsController@add');
 });
