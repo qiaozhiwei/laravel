@@ -174,12 +174,17 @@ class StudentController extends Controller
 
     public function doupload(Request $request)
     {
-        // dd(storage_path('app\public'));
-        // dd($_FILES);
-        $path=$request->file('pic')->store('good_img');
-        // dd($path);
-        $path=asset("storage/".$path);
-        // dd($path);
+        $files=$request->file('pic');
+        // dd($files);
+        if(empty($files)){
+            echo "false";die;
+        }else{
+            $path=$request->file('pic')->store('good_img');      
+            $path=asset("storage/".$path);
+            // dd($path);
+            // dd($path);
+        }
+        
         
     }
 }
