@@ -37,4 +37,9 @@ Route::group(['middleware' => ['login']], function () {
     //商品
     Route::get('/Goods/index','GoodsController@index');
     Route::get('/Goods/add','GoodsController@add');
+    Route::get('/Index/index','IndexController@index');
+    Route::post('/Goods/doadd','GoodsController@doadd');
+    Route::get('/Goods/del','GoodsController@del');
+    Route::get('/Goods/update','GoodsController@update');
+    Route::post('/Goods/doupdate','GoodsController@doupdate');
 });

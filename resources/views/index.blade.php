@@ -1,99 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="/layui/layui.js"></script>
 </head>
 <body>
-@extends('layout.parent')
-@section('title','商品列表')
-@section('pages_section')	
-<div class="section product product-list">
-		<div class="container">
-			<div class="pages-head">
-				<h3>PRODUCT LIST</h3>
-			</div>
-			<div class="input-field">
-				<div class="select-wrapper"><span class="caret">▼</span><input type="text" class="select-dropdown" readonly="true" data-activates="select-options-9f808fbd-b692-f518-4226-21bd6d7c84eb" value="Popular"><ul id="select-options-9f808fbd-b692-f518-4226-21bd6d7c84eb" class="dropdown-content select-dropdown "><li class=""><span>Popular</span></li><li class=""><span>New Product</span></li><li class=""><span>Best Sellers</span></li><li class=""><span>Best Reviews</span></li><li class=""><span>Low Price</span></li><li class=""><span>High Price</span></li></ul><select class="initialized">
-					<option value="">Popular</option>
-					<option value="1">New Product</option>
-					<option value="2">Best Sellers</option>
-					<option value="3">Best Reviews</option>
-					<option value="4">Low Price</option>
-					<option value="5">High Price</option>
-				</select></div>
-			</div>
-			<div class="row">
-			@foreach($data as $item)
-				<div class="col s6">
-					<div class="content">
-						<img src="{{$item->goods_pic}}" alt="">
-						<h6><a href="">{{$item->goods_name}}</a></h6>
-						<div class="price">
-							$20 <span>${{$item->goods_price}}</span>
-						</div>
-						<button class="btn button-default">ADD TO CART</button>
-					</div>
-				</div>
-				@endforeach
-			</div>
-			<div class="row margin-bottom">
-				<div class="col s6">
-					<div class="content">
-						<img src="img/product-new3.png" alt="">
-						<h6><a href="">Fashion Men's</a></h6>
-						<div class="price">
-							$20 <span>$28</span>
-						</div>
-						<button class="btn button-default">ADD TO CART</button>
-					</div>
-				</div>
-				<div class="col s6">
-					<div class="content">
-						<img src="img/product-new4.png" alt="">
-						<h6><a href="">Fashion Men's</a></h6>
-						<div class="price">
-							$20 <span>$28</span>
-						</div>
-						<button class="btn button-default">ADD TO CART</button>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col s6">
-					<div class="content">
-						<img src="img/product-new3.png" alt="">
-						<h6><a href="">Fashion Men's</a></h6>
-						<div class="price">
-							$20 <span>$28</span>
-						</div>
-						<button class="btn button-default">ADD TO CART</button>
-					</div>
-				</div>
-				<div class="col s6">
-					<div class="content">
-						<img src="img/product-new4.png" alt="">
-						<h6><a href="">Fashion Men's</a></h6>
-						<div class="price">
-							$20 <span>$28</span>
-						</div>
-						<button class="btn button-default">ADD TO CART</button>
-					</div>
-				</div>
-			</div>	
-			<div class="pagination-product">
-				<ul>
-					<li class="active">1</li>
-					<li><a href="">2</a></li>
-					<li><a href="">3</a></li>
-					<li><a href="">4</a></li>
-					<li><a href="">5</a></li>
-				</ul>
-			</div>
-		</div>
+@extends('layout.goodsparent')
+@section('body')
+<form action="{{url('Goods/index')}}" method="get">
+<div class="layui-form-item">
+    <label class="layui-form-label">商品名称</label>
+    <div class="layui-input-inline">
+      <input type="text" name="sr"  placeholder="请按商品名称搜索" autocomplete="off" class="layui-input">
+	<input type="submit" value="搜索" class="layui-btn layui-btn-radius layui-btn-normal">
 	</div>
+  </div>
+</form>
+<table class="layui-table">
+  <colgroup>
+    <col width="150">
+    <col width="200">
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>商品名称</th>
+      <th>图片</th>
+      <th>价格</th>
+      <th>添加时间</th>
+      <th>操作</th>
+    </tr> 
+  </thead>
+  <tbody>
+  @foreach($data as $item)
+    <tr>
+      <td>{{$item->goods_name}}</td>
+      <td>
+	  	<img src="{{$item->goods_pic}}" width="100px;" height="100px;">
+	  </td>
+      <td>{{$item->goods_price}}</td>
+      <td>
+	  	{{date("Y-m-d H:i:s",$item->add_time)}}
+	  </td>
+      <td>
+	  	<a href="{{url('Goods/del')}}?id={{$item->id}}">删除</a>|
+		  <a href="{{url('Goods/update')}}?id={{$item->id}}">修改</a>|
+		  <a href="{{url('Goods/add')}}">添加</a>
+	  </td>
+    </tr>
+	@endforeach
+	
+  </tbody>
+</table>
+<h3 align="center">
+{{ $data->links() }}
+</h3>
 @endsection
 
 </body>
