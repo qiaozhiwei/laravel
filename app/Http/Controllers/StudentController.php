@@ -110,11 +110,15 @@ class StudentController extends Controller
 
     public function dologin(Request $request)
     {
+        $r_id=DB::table('register')->first();
+        // dd($r_id);
+        $r_id=get_object_vars($r_id);
+        // dd($r_id);
         $data=$request->all();
         // dd($data);
         $user_name=$data['user_name'];
         // dd($user_name);
-        $request->session()->put('user_name',"$user_name");
+        session(['user_name'=>$user_name,'uid'=>$r_id['r_id'],'user_pwd'=>$data['user_pwd']]);
         // dd($request->session());
         $u_name=session('user_name');
         // dd($u_name);
@@ -125,7 +129,7 @@ class StudentController extends Controller
         $u_name1=array_column($arr,'user_name');
         // dd($u_name1[0]);
         if($u_name==$u_name1[0]){
-            return redirect('StudentController/index');
+            return redirect('Index/index');
         }else{
             return redirect('StudentController/login');
         }
@@ -148,7 +152,7 @@ class StudentController extends Controller
     {
         $data=$request->all();
         // dd($data);
-        $arr=['user_name'=>$data['user_name'],'user_pwd'=>$data['user_pwd'],'time'=>time()];
+        $arr=['user_name'=>$data['user_name'],'user_pwr_name'=>$data['user_name'],'user_pwd'=>$data['user_pwd'],'time'=>time()];
         // dd($arr);
         $where=[
             ['user_name','=',$arr['user_name']],

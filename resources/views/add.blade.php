@@ -30,7 +30,29 @@
       <input type="text" name="goods_price" required  lay-verify="required" placeholder="请输入商品价格" autocomplete="off" class="layui-input">
     </div>
   </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">库存</label>
+    <div class="layui-input-inline">
+      <input type="text" name="number" required  lay-verify="required" placeholder="请输入商品库存" autocomplete="off" class="layui-input">
+    </div>
+  </div>
 
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">是否新品</label>
+    <div class="layui-input-block">
+      <input type="radio" name="is_new" value="1" title="是">
+      <input type="radio" name="is_new" value="2" title="不是">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">是否热卖</label>
+    <div class="layui-input-block">
+      <input type="radio" name="is_hot" value="1" title="是">
+      <input type="radio" name="is_hot" value="2" title="不是">
+    </div>
+  </div>
 
   <div class="layui-form-item">
     <div class="layui-input-block">

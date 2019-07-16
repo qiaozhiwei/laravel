@@ -6,6 +6,8 @@
   <title>layout 后台大布局 - Layui</title>
   <link rel="stylesheet" href="/layui/css/layui.css">
 	<link rel="stylesheet" href="/css/page.css">
+  <script src="/1.js"></script>
+
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -51,16 +53,13 @@
             <dd><a href="{{url('Goods/index')}}">商品列表</a></dd>
           </dl>
         </li>
-        <li class="layui-nav-item">
-          <a href="javascript:;">解决方案</a>
+        <li class="layui-nav-item ">
+          <a class="" href="javascript:;">用户管理</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;">列表一</a></dd>
-            <dd><a href="javascript:;">列表二</a></dd>
-            <dd><a href="">超链接</a></dd>
+            <dd><a href="{{url('User/add')}}">添加用户</a></dd>
+            <dd><a href="{{url('User/index')}}">用户列表</a></dd>
           </dl>
         </li>
-        <li class="layui-nav-item"><a href="">云市场</a></li>
-        <li class="layui-nav-item"><a href="">发布商品</a></li>
       </ul>
     </div>
   </div>

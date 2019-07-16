@@ -405,5 +405,8 @@
 	<script src="/mstore/js/animatedModal.min.js"></script>
 	<script src="/mstore/js/main.js"></script>
 
+
+@section('js')
+@show
 </body>
 </html>

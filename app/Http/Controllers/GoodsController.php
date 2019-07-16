@@ -9,16 +9,25 @@ class GoodsController extends Controller
 {
     public function index(Request $request)
     {
+        $redis=new \Redis();
+        // dd($redis);
+        $redis->connect('127.0.0.1','6379');
+        $num=$redis->incr('num');
+        // dd($num);
+        // echo "您访问了".$num.'次';
         $sr=$request->all()['sr']??"";
         // var_dump($sr);
         // dd($sr);
+      
         $where=[
             ['goods_name','like',"%{$sr}%"],
         ];
         // dd($where);
         $data=DB::table('goods')->where($where)->paginate(3);
+        
         // dd($data);
-        return view('index',['data'=>$data]);
+        // var_dump($sr);
+        return view('index',['data'=>$data,'num'=>$num,'sr'=>$sr]);
     }
 
     public function add()
@@ -29,11 +38,16 @@ class GoodsController extends Controller
     {
         $data=$request->all();
         // dd($data);
+        $files=$request->file('goods_pic');
+        // dd($files);
+        if(empty($files)){
+            echo "没有要上传的文件";die;
+        }
         $path=$request->file('goods_pic')->store('good_img');
         // dd($path);
         $goods_pic=('/storage/'.$path);
         // dd($goods_pic);
-        $arr=['goods_name'=>$data['goods_name'],'goods_pic'=>$goods_pic,'goods_price'=>$data['goods_price'],'add_time'=>time()];
+        $arr=['goods_name'=>$data['goods_name'],'goods_pic'=>$goods_pic,'goods_price'=>$data['goods_price'],'add_time'=>time(),'number'=>$data['number'],'is_new'=>$data['is_new'],'is_hot'=>$data['is_hot']];
         // dd($arr);
 
         $res=DB::table('goods')->insert($arr);
