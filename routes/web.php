@@ -37,6 +37,12 @@ Route::group(['middleware' => ['login']], function () {
     //加入购物车
     Route::get('/Car/create','Car@create');
     Route::get('/Car/index','Car@index');
+    Route::get('order/order_index','order@order_index');
+    Route::get('order/create','order@create');
+    Route::get('order/indexs','order@order_indexs');
+    Route::get('pay','PayController@do_pay');
+    Route::get('return_url','PayController@return_url');//同步
+    Route::post('notify_url','PayController@notify_url');//异步
 });
     Route::get('/Index/index','IndexController@index');
     Route::get('/Index/pro','IndexController@pro');
@@ -52,6 +58,10 @@ Route::group(['middleware' => ['login']], function () {
    
 
 Route::group(['middleware' => ['User']], function () {
+    
+
+
+
   
     //商品
     Route::get('/Goods/index','GoodsController@index');
@@ -66,8 +76,10 @@ Route::group(['middleware' => ['User']], function () {
   
             Route::get('/Goods/update','GoodsController@update');
             Route::post('/Goods/doupdate','GoodsController@doupdate');
+            
 
         });
+
 
 Route::group(['middleware' => ['state']], function () {
   
@@ -81,7 +93,3 @@ Route::group(['middleware' => ['state']], function () {
 
 });
 
-
-Route::get('pay','PayController@do_pay');
-Route::get('return_url','PayController@return_url');//同步
-Route::post('notify_url','PayController@notify_url');//异步

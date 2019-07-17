@@ -2,7 +2,7 @@
 <html lang="zxx">
 <head>
 	<meta charset="UTF-8">
-	<title>@yield('title')</title>
+	<title><?php echo $__env->yieldContent('title'); ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1  maximum-scale=1 user-scalable=no">
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
@@ -364,9 +364,9 @@
 
 	
 	<!-- register -->
-@section('pages_section')
+<?php $__env->startSection('pages_section'); ?>
 
-@show
+<?php echo $__env->yieldSection(); ?>
 	<!-- end register -->
 	
 
@@ -375,7 +375,7 @@
 	<!-- end loader -->
 	
 	<!-- footer -->
-	@section('footer')
+	<?php $__env->startSection('footer'); ?>
 	<div class="footer">
 		<div class="container">
 			<div class="about-us-foot">
@@ -394,7 +394,7 @@
 			</div>
 		</div>
 	</div>
-	@show
+	<?php echo $__env->yieldSection(); ?>
 	<!-- end footer -->
 	
 	<!-- scripts -->
@@ -406,7 +406,7 @@
 	<script src="/mstore/js/main.js"></script>
 
 
-@section('js')
-@show
+<?php $__env->startSection('js'); ?>
+<?php echo $__env->yieldSection(); ?>
 </body>
-</html>
+</html><?php /**PATH C:\wnmp\www\laravel\resources\views/layout/parent.blade.php ENDPATH**/ ?>

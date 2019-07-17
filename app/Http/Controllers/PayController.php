@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Pay;
+use DB;
 
 class PayController extends Controller
 {
@@ -23,12 +24,20 @@ class PayController extends Controller
         $this->return_url = env('APP_URL').'/return_url';
     }
 
-    public function do_pay(){
-        $oid = time().mt_rand(1000,1111);  //订单编号
-        $this->ali_pay($oid);
+    public function do_pay(Request $request){
+       $oid=$request->all();
+       $where=[
+           ['oid','=',$oid],
+       ];
+       $data=DB::table('order')->where($where)->first();
+    //     //dd($data);
+        $data=get_object_vars($data);
+    //     // dd($data);
+          $oid = time().mt_rand(1000,1111);  //订单编号
+        //$this->ali_pay($oid);
         $order = [
-            'out_trade_no' => time(),
-            'total_amount' => '1',
+            'out_trade_no' => $oid ,
+            'total_amount' => $data['pay_money'],
             'subject' => 'test subject - 测试',
         ];
         
@@ -203,5 +212,18 @@ class PayController extends Controller
             openssl_free_key($res);
         }
         return $result;
+    }
+
+    public function return_url(Request $request)
+    {
+        $data=DB::table('order')->get();
+        // dd($data);
+        return view('order_indexs',['data'=>$data]);
+    }
+
+    public function notify_url(Request $request)
+    {
+        $data=$_POST;
+        dd($data);
     }
 }

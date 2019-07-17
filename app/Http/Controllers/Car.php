@@ -10,9 +10,29 @@ class Car extends Controller
     
     public function index()
     {
-        $data=DB::table('cart')->get();
+        $data=DB::table('cart')->get()->toarray();
         // dd($data);
-        return view('Car_index',['data'=>$data]);
+        $goods_id=array_column($data,'goods_id');
+        // dd($goods_id);
+        $goods_id=implode(',',$goods_id);
+        // dd($goods_id);
+        //总价
+        $total=[];
+        $pricetotal="";
+        foreach($data as $k=>$v){
+            $v=get_object_vars($v);
+            // var_dump($v['goods_number']);
+            // var_dump($v['goods_price']);
+            $total[]=$v['goods_number']*$v['goods_price'];
+            // echo "<pre>";
+            $price=array_sum($total);
+            // print_r($price);
+            $pricetotal=$price;
+
+        }
+        // dd($pricetotal);
+        //------------------------------------------------------------
+        return view('Car_index',['data'=>$data,'total'=>$pricetotal,'goods_id'=>$goods_id]);
     }
 
     public function create(Request $request)
@@ -71,4 +91,5 @@ class Car extends Controller
         
         
     }   
+    
 }

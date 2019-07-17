@@ -7,15 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-@extends('layout.parent')
-@section('footer')    
-<input type="hidden" value="{{$id}}" id="good_id">
+
+<?php $__env->startSection('footer'); ?>    
+<input type="hidden" value="<?php echo e($id); ?>" id="good_id">
 <div class="pages section">
 		<div class="container">
 			<div class="shop-single">
-				<img src="{{$data->goods_pic}}">
-				<h5>{{$data->goods_name}}</h5>
-				<div class="price">$20 <span>${{$data->goods_price}}</span></div>
+				<img src="<?php echo e($data->goods_pic); ?>">
+				<h5><?php echo e($data->goods_name); ?></h5>
+				<div class="price">$20 <span>$<?php echo e($data->goods_price); ?></span></div>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam eaque in non delectus, error iste veniam commodi mollitia, officia possimus, repellendus maiores doloribus provident. Itaque, ab perferendis nemo tempore! Accusamus</p>
 				<a href="javascript:;" id="ToCar" class="btn button-default">ADD TO CART</a>
 			</div>
@@ -56,9 +56,9 @@
 			</div>
 		</div>
 	</div>
-	<input type="hidden" name="session" class="atang" value="{{Session::get('user_name')}}">
-@endsection
-@section('js')
+	<input type="hidden" name="session" class="atang" value="<?php echo e(Session::get('user_name')); ?>">
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 <script>
 	$(function(){
 		$('#ToCar').click(function(){
@@ -66,18 +66,18 @@
 			// console.log(session);return false;
 			if(session==""){
 				alert('请先登录');
-				location.href="{{url('StudentController/login')}}";
+				location.href="<?php echo e(url('StudentController/login')); ?>";
 			}
-			var id={{$id}};
+			var id=<?php echo e($id); ?>;
 			// alert(id);
 			$.get(
-				"{{url('Car/create')}}",
+				"<?php echo e(url('Car/create')); ?>",
 				{id:id},
 				function(res){
 					// console.log(res);
 					if(res.code=1){
 						alert(res.msg);
-						location.href="{{url('Car/index')}}";
+						location.href="<?php echo e(url('Car/index')); ?>";
 					}else{
 						alert(res.msg);
 					}
@@ -88,6 +88,7 @@
 		});
 	});
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
 </body>
 </html>
+<?php echo $__env->make('layout.parent', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wnmp\www\laravel\resources\views/pro.blade.php ENDPATH**/ ?>
