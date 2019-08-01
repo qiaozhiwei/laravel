@@ -221,9 +221,5 @@ class PayController extends Controller
         return view('order_indexs',['data'=>$data]);
     }
 
-    public function notify_url(Request $request)
-    {
-        $data=$_POST;
-        dd($data);
-    }
+    
 }

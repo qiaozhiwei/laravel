@@ -85,9 +85,12 @@ class order extends Controller
     
     public function order_indexs(Request $request)
     {
-        $data=DB::table('order')->get();
+        $data=DB::table('order')->get()->toArray();
         // dd($data);
+        $time=time();
+        // dd(date('Y-m-d H:i:s',$time));
         
-        return view('order_indexs',['data'=>$data]);
+        
+        return view('order_indexs',['data'=>$data,'now'=>$time]);
     }
 }

@@ -15,6 +15,52 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/cai/index','cai@index');
+Route::get('/cai/add','cai@add');
+Route::post('/cai/doadd','cai@doadd');
+Route::get('/cai/cai','cai@cai');
+Route::get('/cai/docai','cai@docai');
+Route::get('/cai/list','cai@list');
+
+Route::get('/cai/exam','cai@exam');
+
+Route::get('/test/index','test@index');
+Route::get('/test/add','test@add');
+Route::get('/test/doadd','test@doadd');
+Route::get('/test/test','test@test');
+Route::get('/test/dotest','test@dotest');
+Route::get('/test/list','test@list');
+Route::get('/test/pro','test@pro');
+Route::get('/in/index','in@index');
+Route::get('/in/add','in@add');
+Route::get('/in/create','in@create');
+Route::get('/in/docreate','in@docreate');
+Route::post('/in/doadd','in@doadd');
+
+Route::get('/in/a','in@a');
+Route::get('/in/b','in@b');
+Route::get('/in/c','in@c');
+Route::get('/in/delete','in@delete');
+Route::get('/in/links','in@links');
+Route::get('/in/link','in@link');
+//物业管理
+Route::get('/property/add','property@add');
+Route::post('/property/doadd','property@doadd');
+Route::get('/property/index','property@index');
+Route::get('/property/create','property@create');
+Route::post('/property/docreate','property@docreate');
+Route::get('/property/list','property@list');
+Route::get('/property/car','property@car');
+Route::get('/property/addcar','property@addcar');
+Route::post('/property/doaddcar','property@doaddcar');
+Route::get('/property/car_index','property@car_index');
+Route::get('/property/unsetcar','property@unsetcar');
+Route::get('/property/login','property@login');
+Route::post('/property/dologin','property@dologin');
+//-----------------------实名-----------------------------------
+Route::get('/real/index','real@index');
+Route::post('/real/address','real@address');
+//--------------------------------------------------------
 
 
 
@@ -77,9 +123,12 @@ Route::group(['middleware' => ['User']], function () {
             Route::get('/Goods/update','GoodsController@update');
             Route::post('/Goods/doupdate','GoodsController@doupdate');
             
+            
 
         });
-
+        Route::get('/bank/add','bank@add');
+        Route::get('/bank/index','bank@index');
+        Route::post('/bank/doadd','bank@doadd');
 
 Route::group(['middleware' => ['state']], function () {
   
@@ -92,4 +141,15 @@ Route::group(['middleware' => ['state']], function () {
 });
 
 });
+
+//新闻
+    Route::get('/news/index','news@index');
+    Route::get('/news/add','news@add');
+    Route::post('/news/doadd','news@doadd');
+    Route::get('/news/login','news@login');
+    Route::post('/news/dologin','news@dologin');
+    Route::get('/news/delete','news@delete');
+    Route::get('/news/pro','news@pro');
+    Route::get('/data','news@data');
+
 

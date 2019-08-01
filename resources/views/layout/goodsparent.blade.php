@@ -60,6 +60,64 @@
             <dd><a href="{{url('User/index')}}">用户列表</a></dd>
           </dl>
         </li>
+        <li class="layui-nav-item ">
+          <a class="" href="javascript:;">票据管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="{{url('bank/add')}}">添加票据</a></dd>
+            <dd><a href="{{url('bank/index')}}">票据列表</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item ">
+          <a class="" href="javascript:;">竞猜管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="{{url('cai/add')}}">添加竞猜</a></dd>
+            <dd><a href="{{url('cai/index')}}">竞猜列表</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item ">
+          <a class="" href="javascript:;">试卷管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="{{url('test/add')}}">添加试卷</a></dd>
+            <dd><a href="{{url('test/index')}}">试卷列表</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item ">
+          <a class="" href="javascript:;">调研管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="{{url('in/create')}}">添加调研</a></dd>
+            <dd><a href="{{url('in/add')}}">添加调研问题</a></dd>
+            <dd><a href="{{url('in/index')}}">调研列表</a></dd>
+          </dl>
+        </li>
+        
+        <li class="layui-nav-item ">
+          <a class="" href="javascript:;">物业管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="{{url('property/create')}}">添加车位</a></dd>
+            <dd><a href="{{url('property/list')}}">数据统计</a></dd>
+            <dd><a href="{{url('property/add')}}">添加门卫</a></dd>
+            <dd><a href="{{url('property/login')}}">门卫登录</a></dd>
+          </dl>
+        </li>
+
+
+        <li class="layui-nav-item ">
+          <a class="" href="javascript:;">查看地址</a>
+          <dl class="layui-nav-child">
+            <dd><a href="{{url('real/index')}}">查看地址</a></dd>
+          </dl>
+        </li>
+
+
+        <li class="layui-nav-item ">
+          <a class="" href="javascript:;">新闻管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="{{url('news/add')}}">新闻添加</a></dd>
+            <dd><a href="{{url('news/index')}}">新闻列表</a></dd>
+          </dl>
+        </li>
+
+
       </ul>
     </div>
   </div>
