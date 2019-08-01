@@ -93,7 +93,7 @@ class news extends Controller
         $num=$redis->incr('news_num');
         // dd($num);
         $arr=$redis->get('data');
-        // dd($arr);
+        // dd($arr);    
         if($arr==false){
             $data=DB::table('news')->first();
             $data=json_encode($data);
