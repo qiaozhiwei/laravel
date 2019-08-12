@@ -146,6 +146,7 @@ class wechat extends Controller
 
     public function code(Request $request)
     {
+        $access_token=$this->access_token();
         $appid="wx9f5dbb91dcfaee8f";
         $appsecret="b084b27bcbb10ce63e3b37913ded5d3f";
         $code=$request->all()['code'];
@@ -158,12 +159,14 @@ class wechat extends Controller
         $openid=$re['openid'];
         // dd($openid);
         $request->session()->put('openid',"$openid");
-        $access_token=$this->access_token();
         // dd($access_token);
         $get_userinfo_url="https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
         $data=file_get_contents($get_userinfo_url);
         $data=json_decode($data,1);
         // dd($data);
+        if((array_key_exists('errcode',$data))==true){
+            echo "程序错误返回码为".$data['errcode'];die;
+        }
         $name=$data['nickname'];
         // dd($name);
         $count=DB::table('wechat_userinfo')->count();
@@ -834,8 +837,19 @@ class wechat extends Controller
         return $data;
     }
     
-    public function even()
+    public function even(Request $request)
     {
-        echo 111;
+        //$this->checkSignature();
+        $data = file_get_contents("php://input");
+        //解析XML
+        $xml = simplexml_load_string($data,'SimpleXMLElement', LIBXML_NOCDATA);        //将 xml字符串 转换成对象
+        $xml = (array)$xml; //转化成数组
+        $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
+        file_put_contents(storage_path('logs/wx_event.log'),$log_str,FILE_APPEND);
+        \Log::Info(json_encode($xml));
+        $message = '你好!';
+        $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
+        echo $xml_str;
+        //echo $_GET['echostr'];
     }
 }

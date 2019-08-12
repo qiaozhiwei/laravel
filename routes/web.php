@@ -190,7 +190,7 @@ Route::group(['middleware' => ['state']], function () {
     Route::post('/wechat/do_push_info','wechat@do_push_info');
     Route::get('/wechat/ticket','wechat@ticket');
     Route::get('/ceshi/a','ceshi@a');
-    Route::get('/wechat/even','wechat@even');
+    Route::post('/wechat/even','wechat@even');
 
     
     
