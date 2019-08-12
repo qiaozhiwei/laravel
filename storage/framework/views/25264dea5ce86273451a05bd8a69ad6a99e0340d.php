@@ -1,0 +1,1 @@
+<?php echo e($re); ?><?php /**PATH C:\wnmp\www\laravel\resources\views/wechat_login.blade.php ENDPATH**/ ?>

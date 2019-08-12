@@ -15,6 +15,7 @@ class User
      */
     public function handle($request, Closure $next)
     {
+        // dd($request->session()->get('password'));
         if (($request->session()->has('password'))==false) {
             return redirect('User/login');
         }

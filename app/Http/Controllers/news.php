@@ -109,7 +109,23 @@ class news extends Controller
 
     public function data(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
+        if(in_array('access_token',$request->all())){
+        echo "1111";die;
+        }
+        $token=$request->all()['access_token'];
+        //dd($token);
+        $access_token=111;
+        if(empty($token)){
+        echo "您的令牌为空";die;
+        }else if($token!=$access_token){
+        echo "您的令牌有误";die;
+        }
+         //dd($request->all());
+        $data=DB::table('student')->get()->toarray();
+        //dd($data);
+        return json_encode($data);
         // dd(1111);
     }
+
 }

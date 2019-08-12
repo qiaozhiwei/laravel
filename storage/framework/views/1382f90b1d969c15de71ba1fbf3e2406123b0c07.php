@@ -81,6 +81,7 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 		<input type="text" name="name" placeholder="用户名" required="required" />
 		<input type="password" name="password" placeholder="密码" required="required" />
 		是否成为root?<input type="checkbox" name="state" value="1" />
+		<b style="color:white"><a href="<?php echo e(url('wechat/login')); ?>" style="color:white">第三方合作账号登陆</a></b>
 		<button type="submit" class="btn btn-primary btn-block btn-large">登录</button>
 	</form>
 </div>

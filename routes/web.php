@@ -133,10 +133,11 @@ Route::group(['middleware' => ['User']], function () {
 Route::group(['middleware' => ['state']], function () {
   
     //用户
-    Route::get('/User/index','User@admin_index');    
+    Route::get('/User/index','User@admin_index');
     Route::get('/User/add','User@admin_add');    
     Route::post('/User/do_add','User@do_add');    
     Route::get('/User/state','User@state');   
+    
 
 });
 
@@ -153,3 +154,52 @@ Route::group(['middleware' => ['state']], function () {
     Route::get('/data','news@data');
 
 
+    Route::get('/wechat/get_info','wechat@get_info');
+    Route::get('/wechat/get_list','wechat@get_list');
+    Route::get('/wechat/pro','wechat@pro');
+    Route::get('/wechat/access_token','wechat@access_token');
+    Route::get('/wechat/login','wechat@login');
+    Route::get('/wechat/code','wechat@code');
+    Route::get('/wechat/xxoo','wechat@xxoo');
+    Route::get('/wechat/ooxx','wechat@ooxx');
+    Route::get('/wechat/view_index','wechat@view_index');
+    Route::get('/wechat/del','wechat@del');
+    Route::get('/wechat/upload','wechat@upload');
+    Route::post('/wechat/doupload','wechat@doupload');
+    Route::get('/wechat/get_source','wechat@get_source');
+    Route::get('/wechat/source_index','wechat@source_index');
+    Route::get('/wechat/upload_permanent','wechat@upload_permanent');
+    Route::post('/wechat/do_upload_permanent','wechat@do_upload_permanent');
+    Route::get('/wechat/del_source','wechat@del_source');
+    //标签管理
+    Route::get('/wechat/create_label','wechat@create_label');
+    Route::post('/wechat/do_create_label','wechat@do_create_label');
+    Route::get('/wechat/label_index','wechat@label_index');
+    Route::get('/wechat/del_label','wechat@del_label');
+    Route::get('/wechat/update_label','wechat@update_label');
+    Route::post('/wechat/do_update_label','wechat@do_update_label');
+    Route::get('/wechat/label_user_list','wechat@label_user_list');
+    Route::get('/wechat/set_label','wechat@set_label');
+    Route::get('/wechat/do_set_label','wechat@do_set_label');
+    Route::get('/wechat/wechat_index','wechat@wechat_index');
+    Route::get('/wechat/label_unset','wechat@label_unset');
+    Route::get('/wechat/see_label','wechat@see_label');
+    Route::get('/wechat/label_delete','wechat@label_delete');
+    Route::get('/wechat/wechat_del_access_token','wechat@wechat_del_access_token');
+    Route::get('/wechat/push_info','wechat@push_info');
+    Route::post('/wechat/do_push_info','wechat@do_push_info');
+    Route::get('/wechat/ticket','wechat@ticket');
+    Route::get('/ceshi/a','ceshi@a');
+    Route::get('/wechat/even','wechat@even');
+
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+    

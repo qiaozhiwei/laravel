@@ -117,6 +117,29 @@
           </dl>
         </li>
 
+        <li class="layui-nav-item ">
+          <a class="" href="javascript:;">微信用户管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="{{url('wechat/get_info')}}">微信用户添加</a></dd>
+            <dd><a href="{{url('wechat/wechat_index')}}">微信用户列表</a></dd>
+          </dl>
+        </li>
+
+
+        <li class="layui-nav-item ">
+          <a class="" href="javascript:;">模板管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="{{url('wechat/view_index')}}">模板列表</a></dd>
+          </dl>
+        </li>
+
+        <li class="layui-nav-item ">
+          <a class="" href="javascript:;">用户标签管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="{{url('wechat/create_label')}}">创建标签</a></dd>
+            <dd><a href="{{url('wechat/label_index')}}">标签列表</a></dd>
+          </dl>
+        </li>
 
       </ul>
     </div>
