@@ -196,6 +196,7 @@ Route::group(['middleware' => ['state']], function () {
     Route::get('/distribution/index','distribution@index');
     Route::get('/distribution/ticket','distribution@ticket');
     Route::get('/distribution/get_label','distribution@get_label');
+    Route::get('/distribution/pro','distribution@pro');
     
     
 

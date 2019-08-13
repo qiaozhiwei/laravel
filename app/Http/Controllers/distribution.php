@@ -84,5 +84,10 @@ class distribution extends Controller
         }
     }
 
+    public function pro()
+    {
+        
+    }
+
     
 }
