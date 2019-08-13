@@ -192,6 +192,13 @@ Route::group(['middleware' => ['state']], function () {
     Route::get('/ceshi/a','ceshi@a');
     Route::post('/wechat/even','wechat@even');
 
+    //分销
+    Route::get('/distribution/index','distribution@index');
+    Route::get('/distribution/ticket','distribution@ticket');
+    Route::get('/distribution/get_label','distribution@get_label');
+    
+    
+
     
     
     

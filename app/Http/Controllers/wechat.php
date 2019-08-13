@@ -837,19 +837,31 @@ class wechat extends Controller
         return $data;
     }
     
-    public function even(Request $request)
+    public function even()
     {
-        //$this->checkSignature();
-        $data = file_get_contents("php://input");
-        //解析XML
-        $xml = simplexml_load_string($data,'SimpleXMLElement', LIBXML_NOCDATA);        //将 xml字符串 转换成对象
-        $xml = (array)$xml; //转化成数组
-        $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
-        file_put_contents(storage_path('logs/wx_event.log'),$log_str,FILE_APPEND);
-        \Log::Info(json_encode($xml));
-        $message = '你好!';
-        $xml_str = '<xml><ToUserName><![CDATA['.$xml['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
-        echo $xml_str;
-        //echo $_GET['echostr'];
-    }
+        $data=file_get_contents("php://input");
+        file_put_contents(storage_path('/logs/wechat.log'),$data);
+        //转对象
+        $data=simplexml_load_string($data,'SimpleXMLElement',LIBXML_NOCDATA);
+//        dd($data);
+        //转数组
+        $data=get_object_vars($data);
+//        dd($data);
+        if((array_key_exists('Content',$data))==FALSE){
+            if($data['Event']=="subscribe"){
+                //未关注
+                $xml_str = '<xml><ToUserName><![CDATA['.$data['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$data['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[欢迎关注本公号，你好]]></Content></xml>';
+                //响应回去
+                echo $xml_str;die;
+            }else{
+                //已关注
+                $xml_str = '<xml><ToUserName><![CDATA['.$data['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$data['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[你已关注本公众号,你好]]></Content></xml>';
+                //响应回去
+                echo $xml_str;die;
+            }
+        }else{
+            $xml_str = '<xml><ToUserName><![CDATA['.$data['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$data['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[你好]]></Content></xml>';
+            //响应回去
+            echo $xml_str;
+        }
 }

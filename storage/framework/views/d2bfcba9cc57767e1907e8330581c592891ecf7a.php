@@ -141,6 +141,14 @@
           </dl>
         </li>
 
+        <li class="layui-nav-item ">
+          <a class="" href="javascript:;">分销</a>
+          <dl class="layui-nav-child">
+            <dd><a href="<?php echo e(url('distribution/index')); ?>">分销</a></dd>
+          </dl>
+        </li>
+
+
       </ul>
     </div>
   </div>
