@@ -839,17 +839,24 @@ class wechat extends Controller
     
     public function even()
     {
+        $access_token=$this->access_token();
         $data=file_get_contents("php://input");
         file_put_contents(storage_path('/logs/wechat.log'),$data);
         //转对象
         $data=simplexml_load_string($data,'SimpleXMLElement',LIBXML_NOCDATA);
-//        dd($data);
+        //dd($data);
         //转数组
         $data=get_object_vars($data);
-//        dd($data);
+        //dd($data);
+        $name=session('name');
+        $where=[
+            ['name','=',$name],
+        ];
         if((array_key_exists('Content',$data))==FALSE){
             if($data['Event']=="subscribe"){
                 //未关注
+                $arr=['openid'=>$data['FromUserName']];
+                DB::table('agent')->where($where)->update($arr);
                 $xml_str = '<xml><ToUserName><![CDATA['.$data['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$data['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[欢迎关注本公号，你好]]></Content></xml>';
                 //响应回去
                 echo $xml_str;die;
@@ -864,4 +871,5 @@ class wechat extends Controller
             //响应回去
             echo $xml_str;
         }
+    }
 }
