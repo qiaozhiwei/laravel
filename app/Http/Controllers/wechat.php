@@ -19,24 +19,24 @@ class wechat extends Controller
         // dd($redis);
         $redis->connect('127.0.0.1','6379');
         // dd($redis->get('access_token'));
-        // $re=file_get_contents("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appid}&secret={$appsecret}");
-        // $re=json_decode($re,1);
-        // $access_token=$re['access_token'];
+        $re=file_get_contents("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appid}&secret={$appsecret}");
+        $re=json_decode($re,1);
+        $access_token=$re['access_token'];
         // $redis->del('access_token');
         // dd($redis->get('access_token'));
         // dd($access_token);
-        if(($redis->get('access_token'))===false){
-            $re=file_get_contents("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appid}&secret={$appsecret}");
-            $re=json_decode($re,1);
-            // dd($re);
-            $access_token=$re['access_token'];
-            // dd($access_token);
-            $time=$re['expires_in'];
-            $redis->set('access_token',$access_token,$time);
-        }else{
-            $access_token=$redis->get('access_token');
-            // dd($access_token);
-        }
+        // if(($redis->get('access_token'))===false){
+        //     $re=file_get_contents("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appid}&secret={$appsecret}");
+        //     $re=json_decode($re,1);
+        //     // dd($re);
+        //     $access_token=$re['access_token'];
+        //     // dd($access_token);
+        //     $time=$re['expires_in'];
+        //     $redis->set('access_token',$access_token,$time);
+        // }else{
+        //     $access_token=$redis->get('access_token');
+        //     // dd($access_token);
+        // }
         // // dd($access_token);
         return $access_token; 
     }
@@ -847,16 +847,47 @@ class wechat extends Controller
         //dd($data);
         //转数组
         $data=get_object_vars($data);
-        //dd($data);
-        $name=session('name');
+//        dd($data);
+        $user_id=$data['EventKey'];
+        $user_id=explode('_',$user_id);
+        $user_id=array_pop($user_id);
+//        dd($user_id);
+        $user_where=[
+            ['id','=',$user_id],
+        ];
+        $name=DB::table('admin_user')->where($user_where)->select('name')->first();
+        $name=get_object_vars($name)['name'];
+//        dd($name);
         $where=[
             ['name','=',$name],
         ];
+//        dd($where);
         if((array_key_exists('Content',$data))==FALSE){
             if($data['Event']=="subscribe"){
                 //未关注
-                $arr=['openid'=>$data['FromUserName']];
-                DB::table('agent')->where($where)->update($arr);
+
+                //防刷单
+                $count=DB::table('info')->where($where)->count();
+//                dd($count);
+                $info_where=[
+                    ['openid','=',$data['FromUserName']],
+                ];
+                $openid_count=DB::table('info')->where($info_where)->count();
+//                dd($openid_count);
+                if($openid_count>0){
+                    $xml_str = '<xml><ToUserName><![CDATA['.$data['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$data['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[关注成功!你已关注过公众号，不能同时多次关注!]]></Content></xml>';
+                    echo $xml_str;die;
+                }
+                if($count>0){
+                    $xml_str = '<xml><ToUserName><![CDATA['.$data['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$data['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[关注成功!你已经关注过公众号,不给你佣金!]]></Content></xml>';
+                    echo $xml_str;die;
+                }
+                $arr=['openid'=>$data['FromUserName'],'name'=>$name];
+//                dd($arr);
+                $arrs=['openid'=>$data['FromUserName']];
+                DB::table('admin_user')->where($where)->update($arrs);
+                $res=DB::table('info')->insert($arr);
+//                dd($res);
                 $xml_str = '<xml><ToUserName><![CDATA['.$data['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$data['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[欢迎关注本公号，你好]]></Content></xml>';
                 //响应回去
                 echo $xml_str;die;
@@ -867,9 +898,56 @@ class wechat extends Controller
                 echo $xml_str;die;
             }
         }else{
-            $xml_str = '<xml><ToUserName><![CDATA['.$data['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$data['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[你好]]></Content></xml>';
+            $info="你好";
+            if($data['Content']=='你好'){
+                $info="你也好";
+            }
+            $xml_str = '<xml><ToUserName><![CDATA['.$data['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$data['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$info.']]></Content></xml>';
             //响应回去
             echo $xml_str;
         }
     }
+
+    public function menu()
+    {
+        $access_token=$this->access_token();
+        // dd($access_token);
+        $url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=$access_token";
+        $data=[
+            'button'=>[
+                        [
+                            'type'=>"click",
+                            'name'=>"今日歌曲",
+                            'key'=>"V1001_TODAY_MUSIC",
+                        ],
+                        [
+                            'name'=>'菜单',
+                            'sub_button'=>[
+                                [
+                                    'type'=>'view',
+                                    'name'=>'搜索',
+                                    'url'=>"https://www.baidu.com"
+                                ],
+                                [
+                                        'type'=>'click',
+                                        'name'=>'点我',
+                                        'key'=>'V1001_GOOD'
+                                ],
+                            ],
+                                
+                        ],
+                    ],
+
+            
+            ];
+
+           
+            // dd($data);
+            $re=$this->post($url,json_encode($data,JSON_UNESCAPED_UNICODE));
+            dd($re);
+    }
+
+    
+
 }
+

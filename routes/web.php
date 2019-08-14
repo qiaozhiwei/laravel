@@ -191,6 +191,7 @@ Route::group(['middleware' => ['state']], function () {
     Route::get('/wechat/ticket','wechat@ticket');
     Route::get('/ceshi/a','ceshi@a');
     Route::post('/wechat/even','wechat@even');
+    Route::get('/wechat/menu','wechat@menu');
 
     //分销
     Route::get('/distribution/index','distribution@index');
@@ -205,8 +206,7 @@ Route::group(['middleware' => ['state']], function () {
     
     
     
-    
-    
+      
     
 
 

@@ -8,6 +8,11 @@
 </head>
 <body>
     <table align="center" border=1>
+        <caption>
+            <h1>
+                <a href="{{url('distribution/add')}}">添加代理商</a>
+            </h1>
+        </caption>
         <tr>
             <td>ID</td>
             <td>代理商姓名</td>
@@ -26,12 +31,19 @@
                 <img src="{{$v->url}}" width="100px;" height="100px;">
                 @endif
             </td>
-            <td>{{$v->code}}</td>
             <td>
                 @if($v->url=="")
-                <a href="{{url('distribution/ticket')}}">生成该代理商的二维码</a>
+                    无推广码
+                    @else
+                    {{$v->code}}
+                    @endif
+            </td>
+            <td>
+                @if($v->url=="")
+                <a href="{{url('distribution/ticket')}}?name={{$v->user_name}}">生成该代理商的二维码</a>
                 @else
                 已生成二维码
+                    <a href="{{url('distribution/pro')}}?name={{$v->user_name}}">查看推广用户</a>
                 @endif
             </td>
         </tr>
