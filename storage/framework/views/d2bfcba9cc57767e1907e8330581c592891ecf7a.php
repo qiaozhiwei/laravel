@@ -148,6 +148,29 @@
           </dl>
         </li>
 
+        <li class="layui-nav-item ">
+          <a class="" href="javascript:;">菜单管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="<?php echo e(url('wechat/menu_add')); ?>">添加菜单</a></dd>
+            <dd><a href="<?php echo e(url('wechat/menu_index')); ?>">菜单列表</a></dd>
+          </dl>
+        </li>
+
+
+        <li class="layui-nav-item ">
+          <a class="" href="javascript:;">表白</a>
+          <dl class="layui-nav-child">
+            <dd><a href="<?php echo e(url('express/add')); ?>">添加表白</a></dd>
+            <dd><a href="<?php echo e(url('express/index')); ?>">用户列表</a></dd>
+          </dl>
+        </li>
+
+        <li class="layui-nav-item ">
+          <a class="" href="javascript:;">留言</a>
+          <dl class="layui-nav-child">
+            <dd><a href="<?php echo e(url('text/index')); ?>">粉丝列表</a></dd>
+          </dl>
+        </li>
 
       </ul>
     </div>

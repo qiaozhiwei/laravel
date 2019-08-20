@@ -22,6 +22,7 @@ class wechat extends Controller
         $re=file_get_contents("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appid}&secret={$appsecret}");
         $re=json_decode($re,1);
         $access_token=$re['access_token'];
+        // dd($access_token);
         // $redis->del('access_token');
         // dd($redis->get('access_token'));
         // dd($access_token);
@@ -67,7 +68,7 @@ class wechat extends Controller
         }
         $data=[];
         if($re['count']==0){
-            $arr=DB::table('wechat')->get()->toarray();            
+            $arr=DB::table('wechat')->get()->toarray();
         }else{
             $openid=$re['data']['openid'];
             // dd($openid);
@@ -141,18 +142,19 @@ class wechat extends Controller
         $re=("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$appid&redirect_uri=$redirect_url&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect");
         // dd($re);
         // file_get_contents("$re");
+        // die;
         header("Location:$re");
     }
 
     public function code(Request $request)
     {
+        // dd($request->all());
         $access_token=$this->access_token();
         $appid="wx9f5dbb91dcfaee8f";
         $appsecret="b084b27bcbb10ce63e3b37913ded5d3f";
         $code=$request->all()['code'];
         // dd($code);
         $url="https://api.weixin.qq.com/sns/oauth2/access_token?appid=$appid&secret=$appsecret&code=$code&grant_type=authorization_code";
-        // header("location:$url");
         $re=file_get_contents($url);
         $re=json_decode($re,1);
         // dd($re);
@@ -230,8 +232,8 @@ class wechat extends Controller
 
     public function post($url, $data = []){
         //初使化init方法
-        // dd($data);
         $ch=curl_init();
+        // dd($ch);
         //指定URL
         curl_setopt($ch,CURLOPT_URL, $url);
         //设定请求后返回结果
@@ -745,7 +747,7 @@ class wechat extends Controller
     }
 
 
-
+    //清除接口调用限制
     public function wechat_del_access_token()
     {
         $access_token=$this->access_token();
@@ -836,7 +838,7 @@ class wechat extends Controller
         $data=$response->getBody();
         return $data;
     }
-    
+    //被动回复消息、推送事件
     public function even()
     {
         $access_token=$this->access_token();
@@ -907,7 +909,7 @@ class wechat extends Controller
             echo $xml_str;
         }
     }
-
+    //为您客户端创建菜单
     public function menu()
     {
         $access_token=$this->access_token();
@@ -947,7 +949,442 @@ class wechat extends Controller
             dd($re);
     }
 
-    
+    // //添加一级菜单
+    // public function menu_add_one()
+    // {
+    //     return view('menu_add_one');
+    // }
+
+
+    // public function doadd_one(Request $request)
+    // {
+    //     $data=$request->all();
+    //     // dd($data);
+    //     $arr=['name'=>$data['name'],'type'=>$data['type'],'key'=>$data['key'],'url'=>$data['url']];
+    //     // dd($arr);
+    //     $where=[
+    //         ['name','=',$data['name']],
+    //     ];
+    //     // dd($where);
+    //     $count=DB::table('menu_one')->where($where)->count();
+    //     // dd($count);
+    //     if($count>0){
+    //         echo "菜单名字已存在，请更换";die;
+    //     }
+    //     $res=DB::table('menu_one')->insert($arr);
+    //     // dd($res);
+    //     if($res){
+    //         return redirect('wechat/menu_index');
+    //     }else{
+    //         echo "false";
+    //     }
+    // }
+
+
+    //添加菜单
+
+
+    public function menu_add()
+    {
+        return view('menu_add');
+    }
+
+
+    public function doadd(Request $request)
+    {
+        $access_token=$this->access_token();
+        $data=$request->all();
+        // dd($data);
+        $res="";
+        $url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=$access_token";
+        if($data['menu_type']==1){
+            //一级菜单 只能添加三条数据
+            //menu_type为1，并且name_one不能重复
+            if($data['name_one']==""){
+                echo "你要添加的是一级菜单，名字不能为空";die;
+            }
+            $where=[
+                ['name_one','=',$data['name_one']],
+            ];
+            // dd($where);
+            $count=DB::table('menu')->where($where)->count();
+            // dd($count);
+            
+            if($count>0){
+                echo "你要添加的一级菜单已存在";die;
+            }else{
+                //微信客户端与数据库同步
+                
+                $arr=['name_one'=>$data['name_one'],'type'=>$data['type'],'key'=>$data['key'],'menu_type'=>$data['menu_type'],'url'=>$data['url']];
+                // dd($arr);
+                $res=DB::table('menu')->insert($arr);
+                
+            }
+            
+        }else{
+            //二级菜单  只能添加五条数据
+            //menu_type为2并且name_one不能为空可以重复,name_two不能为空不能重复,还可以不添加一级菜单，根据已有的一级菜单添加或更新耳机菜单
+            $where=[
+                ['name_two','=',$data['name_two']],
+            ];
+            // dd($where);
+            $count=DB::table('menu')->where($where)->count();
+            // dd($count);
+            if($count>0){
+                echo "你要添加的二级菜单已存在";die;
+            }else{
+                                           
+                $arr=['name_one'=>$data['name_one'],'name_two'=>$data['name_two'],'type'=>$data['type'],'key'=>$data['key'],'url'=>$data['url'],'menu_type'=>$data['menu_type']];
+                // dd($arr);
+                $res=DB::table('menu')->insert($arr);
+            }
+            
+        }
+        if($res){
+            return redirect('wechat/menu_index');
+        }else{
+            echo "false";
+        }
+    }
+
+    //菜单列表
+    public function menu_index()
+    {
+        $data=DB::table('menu')->get();
+        // dd($data);
+        return view('menu_index',['data'=>$data]);
+    }
+    //菜单删除
+    public function menu_del(Request $request)
+    {
+        $id=$request->all()['id'];
+        // dd($id);
+        $where=[
+            ['id','=',$id],
+        ];
+        // dd($where);
+        $res=DB::table('menu')->where($where)->delete();
+        // dd($res);
+        if($res){
+            return redirect('wechat/menu_index');
+        }else{
+            echo "false";
+        }
+    }
+
+
+    public function push(Request $request)
+    {
+        $access_token=$this->access_token();
+        $data=$request->all();
+        // dd($data);
+        $id=$data['array'];
+        $id=explode(',',$id);
+        // dd($id);
+        $menu_info=DB::table('menu')->whereIn('id',$id)->get()->toarray();
+        // dd($menu_info);
+        $array=[];
+        foreach($menu_info as $v){
+            // echo "<pre>";
+            $v=get_object_vars($v);
+            $key=$v['id'];
+            if($key==$v['id']){
+                $array[$key]=$v;
+            }
+            
+        }
+        // dd($array);
+        
+        $keys="";
+        $a=[
+        [
+            'name'=>'',
+            'sub_button'=>[
+                [
+                    'type'=>'',
+                    'name'=>'',
+                ],
+            ],
+                
+        ],
+    ];
+    // dd($array);
+
+    $new_arr=[];
+    $z_arr=[];
+    $a_arr=[];
+    static $n=[];
+        foreach($a as $v){
+            echo "<pre>";
+            
+            foreach($array as $item){
+                $v['name']=$item['name_one'];
+                $v['sub_button'][0]['type']=$item['type'];
+                $v['sub_button'][0]['name']=$item['name_two'];
+                $v['sub_button'][0]['name']=$item['name_two'];
+                if($item['type']=='view'){    
+                    $keys="url"; 
+                    $v['sub_button'][0]["$keys"]=$item['url'];                                                    
+                    $v['sub_button'][0]["type"]=$item['type'];
+                    unset($v['sub_button'][0]['key']);
+                }else if($item['type']=='click'){
+                    $keys="key";     
+                    $v['sub_button'][0]["$keys"]=$item['key'];                                            
+                    $v['sub_button'][0]["type"]=$item['type'];                                   
+                }
+                // print_r($item);
+                // print_r($v);
+                $n=array_merge($n,$v['sub_button']);
+                // print_r($n);
+                // array_push($new_arr,$n);
+                // print_r($new_arr);
+            }
+            // print_r($n);
+            // print_r($v);
+            $z_arr=array_merge($v['sub_button'],$n);
+            array_shift($z_arr);
+            // print_r($z_arr);
+            $v['sub_button']=$z_arr;
+            // print_r($v);
+            $a_arr=$v;
+            // print_r($a_arr);
+            
+        }
+        // die;
+        // dd($a);
+        // dd($a_arr);
+        $push_info=[
+            'button'=>[
+                [
+                    'type'=>"view",
+                    'name'=>"百度一下",
+                    'url'=>"https://www.baidu.com",
+                ],
+                $a_arr,
+            ],
+        ];
+        // dd($push_info);
+        // dd($access_token);
+        $url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=$access_token";
+        $re=$this->post($url,json_encode($push_info,JSON_UNESCAPED_UNICODE));
+        $re=json_decode($re,1);
+        // dd($re);
+        if($re['errcode']==0){
+            echo "推送成功";
+        }else{
+            echo "程序错误,全局返回码为".$re['errcode'];
+        }
+    }
+
+    public function push_two(Request $request)
+    {
+        $access_token=$this->access_token();
+        $data=$request->all()['array'];
+        // dd($data);
+        if($data==null){
+            echo '数据为空,不能搞';die;
+        }
+        $id=explode(',',$data);
+        // dd($id);
+        $type="";
+        $menu_arr=[];
+        foreach($id as $v){
+            echo "<pre>";
+            // echo $v;
+            $where=[
+                ['id','=',$v],
+            ];
+            // print_r($where);
+            $type=DB::table('menu')->select('menu_type')->where($where)->first();
+            $type=get_object_vars($type)['menu_type'];
+            // print_r($type);
+            if($type==1){
+                //一级菜单
+                $where=[
+                    ['menu_type','=',$type],
+                    ['id','=',$v],
+                ];
+                // print_r($where);
+                $menu_one=DB::table('menu')->where($where)->first();
+                $menu_one=get_object_vars($menu_one);              
+                // print_r($menu_one);
+                array_push($menu_arr,$menu_one);
+            }else{
+                //二级菜单
+                $where=[
+                    ['menu_type','=',$type],
+                    ['id','=',$v],
+                ];
+                // print_r($where);
+                $menu_two=DB::table('menu')->where($where)->first(); 
+                $menu_two=get_object_vars($menu_two);              
+                // print_r($menu_two);
+                array_push($menu_arr,$menu_two);
+
+            }
+        }
+        // dd($menu_arr);
+        $menu_one_info=[];
+        $menu_two_info=[];
+        foreach($menu_arr as $v){
+            echo "<pre>";
+            // print_r($v);
+            if($v['menu_type']==1){
+                $menu_one_info[]=$v;
+            }else{
+                $menu_two_info[]=$v;
+            }
+
+        }
+        // dd($menu_one_info);
+        // dd($menu_two_info);
+        //要创建一级菜单就走下面，menu_one_info为空不走
+        $type="";
+        $name="";
+        $push_do_info=[];
+        if($menu_one_info!=""){
+            $push_info=[
+                'button'=>[
+                    [
+                        'type'=>"",
+                        'name'=>"",
+                    ],
+                    
+                ],
+            ];
+            $a=[];
+            $b=[];
+            // dd($push_info);
+            //一级菜单有几条数据就循环几个push_info
+            foreach($menu_one_info as $v){
+                echo "<pre>";
+                // print_r($v);
+                foreach($push_info as $item){
+                    // print_r($item);
+                    //判断事件类型
+                    if($v['type']=='view'){
+                        //view类型的
+                        $item[0]['type']=$v['type'];
+                        $item[0]['name']=$v['name_one'];
+                        $item[0]['url']=$v['url'];
+                    // print_r($item);
+                    }else{
+                        //click类型的
+                        $item[0]['type']=$v['type'];
+                        $item[0]['name']=$v['name_one'];
+                        $item[0]['key']=$v['key'];
+                        // print_r($item);                     
+                    }
+                  
+                    $a[]=array_merge($item[0]);
+                    // print_r($a);  
+                }
+            }
+            // dd($a);
+            $push_do_info=[
+                'button'=>
+                    $a,
+            ];
+            // dd($push_do_info);
+            
+            // dd($re);
+        }
+        // dd($type);
+        //一级推得菜单
+            // dd($push_do_info);
+
+        //二级菜单为空不走
+        $gg=[];
+        if($menu_two_info!=[]){
+            $two_a=[
+                [
+                    'name'=>'',
+                    'sub_button'=>[
+                        [
+                            'type'=>'',
+                            'name'=>'',
+                        ],
+                    ],
+                        
+                ],
+            ];
+            // dd($menu_two_info
+            $qq=[];
+            $zz=[];
+            foreach($menu_two_info as $v){
+                echo "<pre>";
+                // print_r($v);
+                foreach($two_a as $item){
+                    // print_r($item['sub_button']);
+                    $item['name']=$v['name_one'];
+                    if($v['type']=='click'){
+                        //click事件
+                        $item['sub_button'][0]['type']=$v['type'];
+                        $item['sub_button'][0]['name']=$v['name_two'];
+                        $item['sub_button'][0]['key']=$v['key'];
+                        // print_r($item);
+                    }else{
+                        //view事件
+                        $item['sub_button'][0]['type']=$v['type'];
+                        $item['sub_button'][0]['name']=$v['name_two'];
+                        $item['sub_button'][0]['url']=$v['url'];
+                        // print_r($item);
+                        
+                    }
+                    $qq[]=array_merge($item['sub_button'][0]);
+                    $item['sub_button']=$qq;
+                    // print_r($item);
+                    $zz=$item;
+                   
+                    
+                }
+                
+            }
+            // dd($zz);
+            $gg[]=$zz;
+                    
+
+        }
+        echo "<pre>";
+        // die;
+        // dd($gg);
+        // dd($push_do_info);
+        if($gg==[]){
+            dd($push_do_info);
+            $url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=$access_token";
+            $re=$this->post($url,json_encode($push_do_info,JSON_UNESCAPED_UNICODE));
+            // dd($re);
+            $re=json_decode($re,1);
+            // die;
+            if($re['errcode']==0){
+                return redirect('wechat/menu_index');
+            }else{
+                echo "程序错误,您的全局返回码为".$re['errcode'];
+            }
+            die;
+        }
+        
+        $xxoo=array_merge($push_do_info['button'],$gg);
+        // $xxoo
+        // print_r($xxoo);
+        // dd($access_token);
+        // dd($xxoo);
+        $ooxx=[
+            'button'=>$xxoo,
+        ];
+        // dd($ooxx);
+        $url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=$access_token";
+        $re=$this->post($url,json_encode($ooxx,JSON_UNESCAPED_UNICODE));
+        // dd($re);
+        $re=json_decode($re,1);
+        // dd($re);
+        if($re['errcode']==0){
+            return redirect('wechat/menu_index');
+        }else{
+            echo "程序错误,您的全局返回码为".$re['errcode'];
+        }
+            
+    }
 
 }
 

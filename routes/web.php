@@ -106,7 +106,11 @@ Route::group(['middleware' => ['login']], function () {
 Route::group(['middleware' => ['User']], function () {
     
 
-
+    //留言  练习
+    Route::any('/text/index','text@index');
+    Route::any('/text/liuyan','text@liuyan');
+    Route::any('/text/liuyans','text@liuyans');
+    Route::any('/text/send','text@send');
 
   
     //商品
@@ -192,12 +196,36 @@ Route::group(['middleware' => ['state']], function () {
     Route::get('/ceshi/a','ceshi@a');
     Route::post('/wechat/even','wechat@even');
     Route::get('/wechat/menu','wechat@menu');
+    // //一级菜单
+    // Route::get('/wechat/menu_add_one','wechat@menu_add_one');
+    // Route::post('/wechat/doadd_one','wechat@doadd_one');
+    //二级菜单
+    Route::get('/wechat/menu_add','wechat@menu_add');
+    Route::post('/wechat/doadd','wechat@doadd');
+    //菜单列表
+    Route::get('/wechat/menu_index','wechat@menu_index');
+    Route::get('/wechat/menu_del','wechat@menu_del');
+    Route::get('/wechat/push','wechat@push');
+    Route::get('/wechat/push_two','wechat@push_two');
 
     //分销
     Route::get('/distribution/index','distribution@index');
     Route::get('/distribution/ticket','distribution@ticket');
     Route::get('/distribution/get_label','distribution@get_label');
     Route::get('/distribution/pro','distribution@pro');
+
+
+    //表白
+    Route::get('/express/add','express@add');
+    Route::get('/express/doadd','express@doadd');
+    Route::any('/express/index','express@index');
+    Route::any('/express/mine','express@mine');
+    Route::any('/express/add_mine','express@add_mine');
+    Route::any('/express/push','express@push');
+
+    
+
+  
     
     
 
