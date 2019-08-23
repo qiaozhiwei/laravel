@@ -160,7 +160,6 @@
         <li class="layui-nav-item ">
           <a class="" href="javascript:;">表白</a>
           <dl class="layui-nav-child">
-            <dd><a href="<?php echo e(url('express/add')); ?>">添加表白</a></dd>
             <dd><a href="<?php echo e(url('express/index')); ?>">用户列表</a></dd>
           </dl>
         </li>
@@ -169,6 +168,13 @@
           <a class="" href="javascript:;">留言</a>
           <dl class="layui-nav-child">
             <dd><a href="<?php echo e(url('text/index')); ?>">粉丝列表</a></dd>
+          </dl>
+        </li>
+
+        <li class="layui-nav-item ">
+          <a class="" href="javascript:;">油价</a>
+          <dl class="layui-nav-child">
+            <dd><a href="<?php echo e(url('price/get_info')); ?>">获取油价</a></dd>
           </dl>
         </li>
 

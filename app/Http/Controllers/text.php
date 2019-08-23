@@ -95,8 +95,8 @@ class text extends Controller
         $uid=$request->all()['uid'];
         // dd($uid);
         $openid=$request->all()['openid'];
-        // dd($openid);     
-        $nickname=$request->all()['nickname'];   
+        // dd($openid);
+        $nickname=$request->all()['nickname'];
         // dd($nickname);
         return view('text_liuyans',['openid'=>$openid,'uid'=>$uid,'nickname'=>$nickname]);
     }
@@ -108,5 +108,10 @@ class text extends Controller
         $data=DB::table('text')->get();
         // dd($data);
         return view('text_send',['data'=>$data]);
+    }
+
+    public function info()
+    {
+        echo phpinfo();
     }
 }

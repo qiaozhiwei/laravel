@@ -134,13 +134,13 @@ class wechat extends Controller
     {
         $appid="wx9f5dbb91dcfaee8f";
         $appsecret="b084b27bcbb10ce63e3b37913ded5d3f";
-        $url="http://www.laravel.com/wechat/code";
+        $url="http://123.57.18.167/wechat/code";
         // dd(urlEncode($url));
         // dd(urlencode($url));
         $redirect_url=urlencode($url);
-        // dd($redirect_url);
+//         dd($redirect_url);
         $re=("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$appid&redirect_uri=$redirect_url&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect");
-        // dd($re);
+//         dd($re);
         // file_get_contents("$re");
         // die;
         header("Location:$re");
@@ -839,7 +839,7 @@ class wechat extends Controller
         return $data;
     }
     //被动回复消息、推送事件
-    public function even()
+    public function even($oil_info="")
     {
         $access_token=$this->access_token();
         $data=file_get_contents("php://input");
@@ -850,21 +850,24 @@ class wechat extends Controller
         //转数组
         $data=get_object_vars($data);
 //        dd($data);
-        $user_id=$data['EventKey'];
-        $user_id=explode('_',$user_id);
-        $user_id=array_pop($user_id);
-//        dd($user_id);
-        $user_where=[
-            ['id','=',$user_id],
-        ];
-        $name=DB::table('admin_user')->where($user_where)->select('name')->first();
-        $name=get_object_vars($name)['name'];
-//        dd($name);
-        $where=[
-            ['name','=',$name],
-        ];
+
 //        dd($where);
         if((array_key_exists('Content',$data))==FALSE){
+            $user_id=$data['EventKey'];
+            $user_id=explode('_',$user_id);
+            $user_id=array_pop($user_id);
+//        dd($user_id);
+            $user_where=[
+                ['id','=',$user_id],
+            ];
+//        dd($user_where);
+            $name=DB::table('admin_user')->where($user_where)->select('name')->first();
+//        dd($name);
+            $name=get_object_vars($name)['name'];
+//        dd($name);
+            $where=[
+                ['name','=',$name],
+            ];
             if($data['Event']=="subscribe"){
                 //未关注
 
@@ -890,7 +893,7 @@ class wechat extends Controller
                 DB::table('admin_user')->where($where)->update($arrs);
                 $res=DB::table('info')->insert($arr);
 //                dd($res);
-                $xml_str = '<xml><ToUserName><![CDATA['.$data['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$data['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[欢迎关注本公号，你好]]></Content></xml>';
+                $xml_str = '<xml><ToUserName><![CDATA['.$data['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$data['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[欢迎使用本公司提供的油价查询功能]]></Content></xml>';
                 //响应回去
                 echo $xml_str;die;
             }else{
@@ -904,10 +907,16 @@ class wechat extends Controller
             if($data['Content']=='你好'){
                 $info="你也好";
             }
+
             $xml_str = '<xml><ToUserName><![CDATA['.$data['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$data['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$info.']]></Content></xml>';
             //响应回去
             echo $xml_str;
         }
+    }
+
+    public function send_oil()
+    {
+
     }
     //为您客户端创建菜单
     public function menu()
@@ -1384,6 +1393,29 @@ class wechat extends Controller
             echo "程序错误,您的全局返回码为".$re['errcode'];
         }
             
+    }
+
+    public function config()
+    {
+        $config = [
+            'app_id' => 'wx9f5dbb91dcfaee8f',
+            'secret' => 'b084b27bcbb10ce63e3b37913ded5d3f',
+
+            // 指定 API 调用返回结果的类型：array(default)/collection/object/raw/自定义类名
+            'response_type' => 'array',
+
+            //...
+        ];
+        return $config;
+    }
+
+    public function user()
+    {
+        $config=$this->config();
+        // dd($config);
+        $app = Factory::officialAccount($config);
+        $re=$app->user->list($nextOpenId = null);  // $nextOpenId 可选
+        dd($re);
     }
 
 }

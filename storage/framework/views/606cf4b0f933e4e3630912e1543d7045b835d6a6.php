@@ -7,11 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    <table>
+    
         <form action="<?php echo e(url('express/doadd')); ?>" method="get">
         <?php echo csrf_field(); ?>
+        <table  align="center">
         <input type="hidden" name="openid" value=<?php echo e($openid); ?>>
-            <table align="center">
                 <tr>
                     <td>
                         Ta：<input type="text" value="<?php echo e($nickname); ?>" name="name">
@@ -32,8 +32,7 @@
                         <input type="submit" value="表白">
                     </td>
                 </tr>
-            </table>
-        </form>
     </table>
+        </form>
 </body>
 </html><?php /**PATH C:\wnmp\www\laravel\resources\views/express_add.blade.php ENDPATH**/ ?>

@@ -222,6 +222,12 @@ Route::group(['middleware' => ['state']], function () {
     Route::any('/express/mine','express@mine');
     Route::any('/express/add_mine','express@add_mine');
     Route::any('/express/push','express@push');
+    Route::any('/express/user','express@user');
+    Route::any('/text/info','text@info');
+    Route::any('/wechat/user','wechat@user');
+    //油价
+    Route::any('/price/get_info','price@get_info');
+
 
     
 

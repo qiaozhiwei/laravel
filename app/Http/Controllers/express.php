@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\wechat;
+use EasyWeChat\Factory;
 
 class express extends Controller
 {
@@ -116,12 +117,26 @@ class express extends Controller
     //查看我对**表白的数据
     public function mine(wechat $wechat)
     {
-        $access_token=$wecaht->access_token();
+        $access_token=$wechat->access_token();
         $url="";
     }
 
-    public function push()
+
+    //easywechat
+    public function user()
     {
+
+        $config = [
+            'app_id' => 'wx9f5dbb91dcfaee8f',
+            'secret' => 'b084b27bcbb10ce63e3b37913ded5d3f',
         
+            // 指定 API 调用返回结果的类型：array(default)/collection/object/raw/自定义类名
+            'response_type' => 'array',
+        
+            //...
+        ];
+        $app = Factory::officialAccount($config);
+        $re=$app->user->list($nextOpenId = null);  // $nextOpenId 可选
+        dd($re);
     }
 }

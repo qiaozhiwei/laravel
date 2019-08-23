@@ -7,11 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    <table>
+    
         <form action="{{url('express/doadd')}}" method="get">
         @csrf
+        <table  align="center">
         <input type="hidden" name="openid" value={{$openid}}>
-            <table align="center">
                 <tr>
                     <td>
                         Ta：<input type="text" value="{{$nickname}}" name="name">
@@ -32,8 +32,7 @@
                         <input type="submit" value="表白">
                     </td>
                 </tr>
-            </table>
-        </form>
     </table>
+        </form>
 </body>
 </html>
