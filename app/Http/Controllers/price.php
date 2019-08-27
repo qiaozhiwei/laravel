@@ -21,6 +21,8 @@ class price extends Controller
         // dd($oil_price);
     }
 
+
+    
     
 
     

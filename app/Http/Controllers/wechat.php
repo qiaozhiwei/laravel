@@ -839,7 +839,7 @@ class wechat extends Controller
         return $data;
     }
     //被动回复消息、推送事件
-    public function even($oil_info="")
+    public function even()
     {
         $access_token=$this->access_token();
         $data=file_get_contents("php://input");
@@ -870,7 +870,7 @@ class wechat extends Controller
             ];
             if($data['Event']=="subscribe"){
                 //未关注
-
+                
                 //防刷单
                 $count=DB::table('info')->where($where)->count();
 //                dd($count);
@@ -1417,6 +1417,9 @@ class wechat extends Controller
         $re=$app->user->list($nextOpenId = null);  // $nextOpenId 可选
         dd($re);
     }
+
+
+    
 
 }
 
