@@ -228,6 +228,11 @@ Route::group(['middleware' => ['state']], function () {
     //油价
     Route::any('/price/get_info','price@get_info');
 
+    //b卷练习
+    Route::get('/haoyan/create_menu','haoyan@create_menu');    
+    Route::post('/haoyan/docreate','haoyan@docreate');    
+    Route::get('/haoyan/index','haoyan@index');    
+
 
     
 

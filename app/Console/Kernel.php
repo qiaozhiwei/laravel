@@ -24,7 +24,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        
+        $schedule->call(function (){
+            file_put_contents(storage_path('/logs/shehui.log'),'阿唐sb');
+//            \Log::info('1111111111111111');
+        })->everyMinute();
     }
 
     /**
