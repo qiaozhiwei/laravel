@@ -232,6 +232,11 @@ Route::group(['middleware' => ['state']], function () {
     Route::get('/haoyan/create_menu','haoyan@create_menu');    
     Route::post('/haoyan/docreate','haoyan@docreate');    
     Route::get('/haoyan/index','haoyan@index');    
+    //签到
+    Route::get('/sign/add','sign@add');    
+    Route::get('/sign/create_menu','sign@create_menu');    
+    Route::get('/sign/index','sign@index');    
+    Route::post('/sign/docreate','sign@docreate');    
 
 
     

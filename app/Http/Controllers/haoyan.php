@@ -98,6 +98,23 @@ class haoyan extends Controller
 
     public function index()
     {
-        
+        <xml><ToUserName><![CDATA[gh_30106c18970f]]></ToUserName>
+        <FromUserName><![CDATA[o-grPv97kK3c56mpI_4pdgko1suo]]></FromUserName>
+        <CreateTime>1566956707</CreateTime>
+        <MsgType><![CDATA[text]]></MsgType>
+        <Content><![CDATA[了解]]></Content>
+        <MsgId>22433427497112074</MsgId>
+        </xml>
+
+
+        <xml><ToUserName><![CDATA[gh_30106c18970f]]></ToUserName>
+        <FromUserName><![CDATA[o-grPv97kK3c56mpI_4pdgko1suo]]></FromUserName>
+        <CreateTime>1566956746</CreateTime>
+        <MsgType><![CDATA[image]]></MsgType>
+        <PicUrl><![CDATA[http://mmbiz.qpic.cn/mmbiz_jpg/XjeIibDBcL9oaYGBrzLSe0fCbLSLMGicX5x3aeytTvCVo3g6TEWYkjERbpemgFhLVqHHxdoEUtaqgVTllcf42qRw/0]]></PicUrl>
+        <MsgId>22433427437319888</MsgId>
+        <MediaId><![CDATA[TUYWFFb20qDAigd6PhFPMF9j4Stuwrzz1nn7ix3gvTBnRxjXYN33GAF3XZiVspkP]]></MediaId>
+        </xml>
+
     }
 }

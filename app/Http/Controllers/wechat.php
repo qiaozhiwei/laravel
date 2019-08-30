@@ -13,7 +13,7 @@ class wechat extends Controller
     {
         $access_token="";
         $appid="wx9f5dbb91dcfaee8f";
-        $appsecret="b084b27bcbb10ce63e3b37913ded5d3f";  
+        $appsecret="b084b27bcbb10ce63e3b37913ded5d3f";
         // dd($appsecret);
         $redis=new \Redis();
         // dd($redis);
@@ -21,25 +21,47 @@ class wechat extends Controller
         // dd($redis->get('access_token'));
         $re=file_get_contents("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appid}&secret={$appsecret}");
         $re=json_decode($re,1);
+        dd($re);
         $access_token=$re['access_token'];
         // dd($access_token);
         // $redis->del('access_token');
         // dd($redis->get('access_token'));
         // dd($access_token);
-        // if(($redis->get('access_token'))===false){
-        //     $re=file_get_contents("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appid}&secret={$appsecret}");
-        //     $re=json_decode($re,1);
-        //     // dd($re);
-        //     $access_token=$re['access_token'];
-        //     // dd($access_token);
-        //     $time=$re['expires_in'];
-        //     $redis->set('access_token',$access_token,$time);
-        // }else{
-        //     $access_token=$redis->get('access_token');
-        //     // dd($access_token);
-        // }
-        // // dd($access_token);
-        return $access_token; 
+        if(($redis->get('access_token'))===false){
+            $re=file_get_contents("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appid}&secret={$appsecret}");
+            $re=json_decode($re,1);
+            // dd($re);
+            $access_token=$re['access_token'];
+            // dd($access_token);
+            $time=$re['expires_in'];
+            $redis->set('access_token',$access_token,$time);
+        }else{
+            $access_token=$redis->get('access_token');
+            // dd($access_token);
+        }
+        // dd($access_token);
+        $push_info=[
+            'button'=>[
+                [
+                    'type'=>"click",
+                    'name'=>"积分查询",
+                    'key'=>"V1001_TODAY_MUSIC",
+                ],
+                [
+                    'type'=>"click",
+                    'name'=>"签到按钮",
+                    'key'=>"V1001_TODAY_MUSIC",
+                ],
+            ],
+        ];
+        $time=date('Y-m-d H:i:s',time());
+        $a=time();
+        // echo $time;
+        // dd($a);
+        // dd(json_encode($push_info));
+        dd($access_token);
+        return $access_token;
+        
     }
 
     public function get_list(Request $request)
@@ -643,6 +665,7 @@ class wechat extends Controller
     public function wechat_index()
     {
         $access_token=$this->access_token();
+        // dd($access_token);
         $data=DB::table('wechat')->get();
         // dd($data);
         return view('wechat_get_index',['data'=>$data]);
@@ -850,7 +873,51 @@ class wechat extends Controller
         //转数组
         $data=get_object_vars($data);
 //        dd($data);
+        if($data['EventKey']==""){
+//            echo 111;die;
+            $openid=$data['FromUserName'];
+//            dd($openid);
 
+            $url="https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=$openid&lang=zh_CN";
+            $re=file_get_contents($url);
+            $re=json_decode($re,1);
+//            dd($re);
+            $nickname=$re['nickname'];
+            $arr=['nickname'=>$nickname,'openid'=>$openid,'create_time'=>time()];
+//            dd($arr);
+            DB::table('userinfo')->insert($arr);
+            $xml_str = '<xml><ToUserName><![CDATA['.$data['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$data['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$nickname.',感谢您的关注]]></Content></xml>';
+
+            echo $xml_str;die;
+        }
+        if($data['MsgType']=='image'){
+            $pic=$data['PicUrl'];
+//            dd($pic);
+            $client=new Client();
+//            dd($client);
+            $pic_re=$client->get($pic);
+//            dd($pic_re);
+            $filename_end=$pic_re->getHeaders()['Content-Type'][0];
+//            dd($filename_end);
+            $end_name=explode('/',$filename_end);
+//            dd($end_name);
+            $end_name=array_pop($end_name);
+//            dd($end_name);
+
+            $file_name=rand(1000,9999).time().".".$end_name;
+            $path=storage_path('/img'.$file_name);
+//            dd($path);
+            $a=Storage::disk('local')->put($path,$pic_re->getBody());
+//            dd($a);
+            if($a==true){
+                $xml_str = '<xml><ToUserName><![CDATA['.$data['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$data['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[图片存入成功]]></Content></xml>';
+                echo $xml_str;die;
+            }else{
+                $xml_str = '<xml><ToUserName><![CDATA['.$data['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$data['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[图片存入失败]]></Content></xml>';
+                echo $xml_str;die;
+            }
+
+        }
 //        dd($where);
         if((array_key_exists('Content',$data))==FALSE){
             $user_id=$data['EventKey'];
@@ -862,7 +929,7 @@ class wechat extends Controller
             ];
 //        dd($user_where);
             $name=DB::table('admin_user')->where($user_where)->select('name')->first();
-//        dd($name);
+//            dd($name);
             $name=get_object_vars($name)['name'];
 //        dd($name);
             $where=[
@@ -913,7 +980,6 @@ class wechat extends Controller
             echo $xml_str;
         }
     }
-
     public function send_oil()
     {
 
