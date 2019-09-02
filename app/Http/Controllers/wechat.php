@@ -1484,8 +1484,28 @@ class wechat extends Controller
         dd($re);
     }
 
-
+    public function file_get_contents()
+    {
+        $url="http://www.laravel.com/san";
+        $query=['name'=>'张三'];
+        $data=[];
+        $options['http'] = array(
+            'timeout'=>60,
+            'method' => 'POST', 
+            'header' => 'Content-type:application/x-www-form-urlencoded',
+            'content' => $query
+           );
+        //    dd($options);
+        $context = stream_context_create($options);
+        // dd($context);
+        $re = file_get_contents($url, false, $context);
+        // dd($re);
+        echo $re;
+    }
+    public function san()
+    {
+        return 3333;
+    }
     
-
 }
 

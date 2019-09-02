@@ -86,6 +86,7 @@ class User extends Controller
             ['name','=',$data['name']],
             ['password','=',$password],
         ];
+        // dd($where);
         $arr=DB::table('admin_user')->where($where)->first();
         $arr=get_object_vars($arr);
         // dd($arr);
@@ -107,6 +108,7 @@ class User extends Controller
 
     public function state(Request $request)
     {
+
         $data=$request->all();
         // dd($data);
         $arr=[$data['field']=>$data['value']];
@@ -123,3 +125,5 @@ class User extends Controller
         }
     }
 }
+
+

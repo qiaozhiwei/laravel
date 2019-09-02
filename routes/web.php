@@ -237,7 +237,9 @@ Route::group(['middleware' => ['state']], function () {
     Route::get('/sign/create_menu','sign@create_menu');    
     Route::get('/sign/index','sign@index');    
     Route::post('/sign/docreate','sign@docreate');    
-
+    Route::get('/wechat/file_get_contents','wechat@file_get_contents');    
+    Route::post('/wechat/san','wechat@san');    
+    
 
     
 
