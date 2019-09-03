@@ -242,6 +242,10 @@ Route::group(['middleware' => ['state']], function () {
     //写接口
     Route::get('/member/show','api\member@show');    
     Route::get('/member/get_info','api\member@get_info');    
+    Route::get('/member/get_GoodsInfo','api\member@get_GoodsInfo');
+    Route::post('/member/Goods_info','api\member@Goods_info');
+    
+    
 
     
 

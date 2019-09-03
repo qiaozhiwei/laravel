@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Goods extends Model
 {
     protected $primaryKey="id";
-    protected $table = 'student';
+    protected $table = 'goods';
     public $timestamps = false;
 }
