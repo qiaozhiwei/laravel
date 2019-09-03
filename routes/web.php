@@ -238,8 +238,10 @@ Route::group(['middleware' => ['state']], function () {
     Route::get('/sign/index','sign@index');    
     Route::post('/sign/docreate','sign@docreate');    
     Route::get('/wechat/file_get_contents','wechat@file_get_contents');    
-    Route::post('/wechat/san','wechat@san');    
-    
+    Route::post('/wechat/san','wechat@san');
+    //写接口
+    Route::get('/member/show','api\member@show');    
+    Route::get('/member/get_info','api\member@get_info');    
 
     
 

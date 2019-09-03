@@ -252,32 +252,7 @@ class wechat extends Controller
         
     }
 
-    public function post($url, $data = []){
-        //初使化init方法
-        $ch=curl_init();
-        // dd($ch);
-        //指定URL
-        curl_setopt($ch,CURLOPT_URL, $url);
-        //设定请求后返回结果
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        //声明使用POST方式来进行发送
-        curl_setopt($ch, CURLOPT_POST, 1);
-        //发送什么数据
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        //忽略证书
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-        //忽略header头信息
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        //设置超时时间
-        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-        //发送请求
-        $output = curl_exec($ch);
-        //关闭curl
-        curl_close($ch);
-        //返回数据
-        return $output;
-    }
+    
 
     public function view_index()
     {
@@ -1506,6 +1481,46 @@ class wechat extends Controller
     {
         return 3333;
     }
+
+    public function post($url, $data = []){
+        //初使化init方法
+        $ch=curl_init();
+        // dd($ch);
+        //指定URL
+        curl_setopt($ch,CURLOPT_URL, $url);
+        //设定请求后返回结果
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        //声明使用POST方式来进行发送
+        curl_setopt($ch, CURLOPT_POST, 1);
+        //发送什么数据
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        //忽略证书
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        //忽略header头信息
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        //设置超时时间
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        //发送请求
+        $output = curl_exec($ch);
+        //关闭curl
+        curl_close($ch);
+        //返回数据
+        return $output;
+    }
+
+    public function curlGet()
+    {
+        /*
+            1.初始化
+            2.设置参数(总要告诉浏览器，你要访问哪个url,带什么参数,是什么类型的请求吧;如果要修改或便于查看，还得以文件流的形式返回；且参数一般是CURLOPT_开头的,手册上遍地都是)
+            3.执行(相当于提交地址栏,回车)
+            4.关闭资源
+        */
+        curl_init();
+    }
+    
+
     
 }
 
