@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Storage;
 
 class wechat extends Controller
 {
+
+    public function a()
+    {
+        // 015e50235a01f79890d9ef969c98a03e
+        echo md5('1901'.'乔志伟'.'100');        
+    }
     public function access_token()
     {
         $access_token="";

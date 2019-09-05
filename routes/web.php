@@ -196,6 +196,7 @@ Route::group(['middleware' => ['state']], function () {
     Route::get('/ceshi/a','ceshi@a');
     Route::post('/wechat/even','wechat@even');
     Route::get('/wechat/menu','wechat@menu');
+    Route::get('/wechat/a','wechat@a');
     // //一级菜单
     // Route::get('/wechat/menu_add_one','wechat@menu_add_one');
     // Route::post('/wechat/doadd_one','wechat@doadd_one');
@@ -244,6 +245,20 @@ Route::group(['middleware' => ['state']], function () {
     Route::get('/member/get_info','api\member@get_info');    
     Route::get('/member/get_GoodsInfo','api\member@get_GoodsInfo');
     Route::post('/member/Goods_info','api\member@Goods_info');
+
+    Route::get('/member/create','api\member@create');
+    Route::post('/member/docreate','api\member@docreate');
+    Route::get('/member/index','api\member@index');
+    Route::get('/member/index1','api\member@index1');
+    Route::get('/member/query','api\member@query');
+    Route::get('/member/del','api\member@del');
+    Route::get('/member/update','api\member@update');
+    Route::post('/member/doupdate','api\member@doupdate');
+    Route::get('/member/xxoo','api\member@xxoo');
+    //resful风格
+    Route::resource('/ziyuan','api\ziyuan');
+
+
     
     
 
