@@ -57,12 +57,14 @@
                         if(res.code==200){
                             $.each(res.data.data,function(k,v){
                                 // console.log(v);
-                            var trs='<caption style="margin-left:28%;">名字：<input type="text" name="name" id="sr_name" value="'+name+'"><br />电话：<input type="text" name="tel" id="sr_tel" value="'+tel+'"><br /><button id="yiku">搜索</button></caption><tr class="tr" id="'+v.id+'"><td>'+v.id+'</td><td>'+v.name+'</td><td>'+v.tel+'</td><td><a href="javascript:;" class="del">删除</a>|<a href="javascript:;" class="update">修改</a></td></tr>';                                
+                            var trs='<tr class="tr" id="'+v.id+'"><td>'+v.id+'</td><td>'+v.name+'</td><td>'+v.tel+'</td><td><a href="javascript:;" class="del">删除</a>|<a href="javascript:;" class="update">修改</a></td></tr>';                                
                             // console.log(trs);
                             // $('tbody').hide();
                             // table.append(trs)
                             arr.push(trs);
                             });
+                            var c='<caption style="margin-left:28%;">名字：<input type="text" name="name" id="sr_name" value="'+name+'"><br />电话：<input type="text" name="tel" id="sr_tel" value="'+tel+'"><br /><button id="yiku">搜索</button></caption>';
+                            arr.push(c);
                             table.html(arr);
                         }
                     },

@@ -173,9 +173,10 @@ class member extends Controller
 
     public function xxoo(Request $request)
     {
-        $name=$request->all('name')??"";
-        $tel=$request->all('tel')??"";
-        $sign=$request->all('sign')??"";
+        $name=$request->all()['name']??"";
+        // dd($name);
+        $tel=$request->all()['tel']??"";
+        $sign=$request->all()['sign']??"";
         if($name==""){
             echo "名子不能为空";die;
         }
@@ -186,6 +187,7 @@ class member extends Controller
             echo "签名不能为空";die;
         }
         $tmp_str=md5('shehui'.$name.$tel);
+        // echo $tmp_str;die;
         if($tmp_str!=$sign){
             echo "签名有误";die;
         }
@@ -199,5 +201,17 @@ class member extends Controller
         }
         
     }
+    public function a()
+    {
+        echo phpinfo();
+    }
+
+    //文件上传接口
+    public function upload()
+    {
+        
+    }
+
+    
 }
     

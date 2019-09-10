@@ -255,9 +255,26 @@ Route::group(['middleware' => ['state']], function () {
     Route::get('/member/update','api\member@update');
     Route::post('/member/doupdate','api\member@doupdate');
     Route::get('/member/xxoo','api\member@xxoo');
+    Route::get('/member/a','api\member@a');
     //resful风格
     Route::resource('/ziyuan','api\ziyuan');
+    //周考
+    Route::get('/goodsinfo/create','api\goodsinfo@create');
+    Route::post('/goodsinfo/docreate','api\goodsinfo@docreate');
+    Route::get('/goodsinfo/index','api\goodsinfo@index');
+    Route::get('/goodsinfo/getinfo','api\goodsinfo@getinfo');
+    //加密解密
+    Route::get('/goodsinfo/encryption','api\goodsinfo@encryption');
+    Route::get('/goodsinfo/Decrypt','api\goodsinfo@Decrypt');
+    Route::get('/goodsinfo/code','api\goodsinfo@code');
+    Route::get('/goodsinfo/aes','api\goodsinfo@aes');
+    Route::get('/goodsinfo/rsa','api\goodsinfo@rsa');
+    Route::get('/goodsinfo/rsa_code','api\goodsinfo@rsa_code');
+    Route::get('/goodsinfo/deCode','api\goodsinfo@deCode');
+    Route::get('/goodsinfo/xxoo','api\goodsinfo@xxoo');
+    
 
+    
 
     
     

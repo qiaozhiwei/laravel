@@ -27,24 +27,24 @@ class wechat extends Controller
         // dd($redis->get('access_token'));
         $re=file_get_contents("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appid}&secret={$appsecret}");
         $re=json_decode($re,1);
-        dd($re);
+        // dd($re);
         $access_token=$re['access_token'];
         // dd($access_token);
         // $redis->del('access_token');
         // dd($redis->get('access_token'));
         // dd($access_token);
-        if(($redis->get('access_token'))===false){
-            $re=file_get_contents("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appid}&secret={$appsecret}");
-            $re=json_decode($re,1);
-            // dd($re);
-            $access_token=$re['access_token'];
-            // dd($access_token);
-            $time=$re['expires_in'];
-            $redis->set('access_token',$access_token,$time);
-        }else{
-            $access_token=$redis->get('access_token');
-            // dd($access_token);
-        }
+        // if(($redis->get('access_token'))===false){
+        //     $re=file_get_contents("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appid}&secret={$appsecret}");
+        //     $re=json_decode($re,1);
+        //     // dd($re);
+        //     $access_token=$re['access_token'];
+        //     // dd($access_token);
+        //     $time=$re['expires_in'];
+        //     $redis->set('access_token',$access_token,$time);
+        // }else{
+        //     $access_token=$redis->get('access_token');
+        //     // dd($access_token);
+        // }
         // dd($access_token);
         $push_info=[
             'button'=>[
@@ -65,7 +65,7 @@ class wechat extends Controller
         // echo $time;
         // dd($a);
         // dd(json_encode($push_info));
-        dd($access_token);
+        // dd($access_token);
         return $access_token;
         
     }
@@ -421,7 +421,7 @@ class wechat extends Controller
         dd($res);
         
     }
-    //素材列表
+    //素材列表  
     public function source_index()
     {
         $access_token=$this->access_token();
