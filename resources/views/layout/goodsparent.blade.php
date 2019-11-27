@@ -178,6 +178,15 @@
           </dl>
         </li>
 
+        <li class="layui-nav-item ">
+          <a class="" href="javascript:;">商品管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="{{url('goods/style')}}">添加属性</a></dd>
+            <dd><a href="{{url('goods/cate')}}">添加分类</a></dd>
+            <dd><a href="{{url('goods/create_goods')}}">添加商品</a></dd>
+          </dl>
+        </li>
+
       </ul>
     </div>
   </div>

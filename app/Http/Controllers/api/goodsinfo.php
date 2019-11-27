@@ -169,7 +169,9 @@ class goodsinfo extends Controller
     }
     //对称加解
     public function code()
-    {
+    {   
+        // echo phpinfo();die;
+        // dd($arr);
         $key="fdjfdsfjakfjadii";
         $aes=new aes($key);
         // $data=['name'=>'乔志伟','age'=>100,'mobile'=>11111111];

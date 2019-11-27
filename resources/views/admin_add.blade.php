@@ -8,7 +8,7 @@
 </head>
 <body>
 @extends('layout.goodsparent')
-@section('body')  
+@section('body')
 <form class="layui-form" action="{{url('User/do_add')}}" method="post">
 @csrf
   <div class="layui-form-item">

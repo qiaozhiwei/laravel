@@ -272,8 +272,69 @@ Route::group(['middleware' => ['state']], function () {
     Route::get('/goodsinfo/rsa_code','api\goodsinfo@rsa_code');
     Route::get('/goodsinfo/deCode','api\goodsinfo@deCode');
     Route::get('/goodsinfo/xxoo','api\goodsinfo@xxoo');
+    //商城
+    Route::get('/goods/style','good\goods@style');
+    Route::post('/goods/dostyle','good\goods@dostyle');
+    Route::get('/goods/cate','good\goods@cate');
+    Route::post('/goods/docate','good\goods@docate');
+    Route::get('/goods/create_goods','good\goods@create_goods');
+    Route::get('/goods/commit','good\goods@commit');
+    Route::get('/goods/type','good\goods@type');
+    Route::post('/goods/dotype','good\goods@dotype');
+    Route::get('/goods/yi','good\goods@yi');
+    Route::get('/goods/type_index','good\goods@type_index');
+    Route::get('/goods/style_index','good\goods@style_index');
+    Route::get('/goods/style_list','good\goods@style_list');
+    Route::get('/goods/del','good\goods@del');
+    Route::get('/goods/test','good\goods@test');
+    Route::get('/goods/info','good\goods@info');
+    Route::get('/goods/search','good\goods@search');
+    Route::get('/goods/vedio','good\goods@vedio');
+    Route::get('/goods/auth','good\goods@auth');
+    Route::get('/goods/auth_index','good\goods@auth_index');
     
 
+    //考试
+    Route::get('/test/request_index','api\test@request_index');
+    Route::get('/test/register','api\test@register');
+    Route::get('/test/do_register','api\test@do_register');
+    Route::post('/test/order','api\test@order');
+    Route::get('/user/login','user\user@login');
+    Route::get('/user/get_code','user\user@get_code');
+    Route::post('/user/dologin','user\user@dologin');
+    Route::get('/index/index','index\index@index');
+    Route::get('/index/music_upload','index\index@music_upload');
+    Route::post('/index/doupload','index\index@doupload');
+    Route::get('/index/access_token','index\index@access_token');
+    Route::get('/index/img_upload','index\index@img_upload');
+    Route::get('/index/qny_token','index\index@qny_token');
+    Route::get('/index/cate_create','index\index@cate_create');
+    Route::get('/index/cate_index','index\index@cate_index');
+    Route::get('/index/cate_update','index\index@cate_update');
+    Route::get('/index/vedio','index\index@vedio');
+    Route::post('/index/do_mupload','index\index@do_mupload');
+    Route::get('/index/upload','index\index@upload');
+    Route::get('/index/get_vedio','index\index@get_vedio');
+    Route::post('/index/docreate_cate','index\index@docreate_cate');
+    Route::get('/index/cate_delete','index\index@cate_delete');
+    Route::post('/index/doupdate_cate','index\index@doupdate_cate');
+    Route::get('/user/qq_login','user\user@qq_login');
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
     
 
     

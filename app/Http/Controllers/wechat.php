@@ -23,7 +23,7 @@ class wechat extends Controller
         // dd($appsecret);
         $redis=new \Redis();
         // dd($redis);
-        $redis->connect('127.0.0.1','6379');
+        // $redis->connect('127.0.0.1','6379');
         // dd($redis->get('access_token'));
         $re=file_get_contents("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appid}&secret={$appsecret}");
         $re=json_decode($re,1);
