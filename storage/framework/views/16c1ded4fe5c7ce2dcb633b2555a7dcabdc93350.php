@@ -1,14 +1,7 @@
 <?php $__env->startSection('right'); ?>
 <form action="https://api.weixin.qq.com/cgi-bin/material/add_material" method="post" enctype="multipart/form-data">
+<input type="hidden" name="access_token" value="<?php echo e($access_token); ?>">
     <table>
-    <tr>
-        <td>
-            access_token:
-        </td>
-        <td>
-            <input type="text" name="access_token">
-        </td>
-    </tr>
     <tr>
         <td>
             资源类型:

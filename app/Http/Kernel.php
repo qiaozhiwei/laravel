@@ -65,6 +65,8 @@ class Kernel extends HttpKernel
         'User'=>\App\Http\Middleware\User::class,
         'state'=>\App\Http\Middleware\state::class,
         'news'=>\App\Http\Middleware\news::class,
+        'live_users'=>\App\Http\Middleware\live_users::class,
+        'islogin'=>\App\Http\Middleware\islogin::class,
     ];
 
     /**

@@ -277,6 +277,20 @@ class goods extends Controller
 
     public function auth()
     {
+
+        $a=["红色",'蓝色','蓝色'];
+        $b=['37','38','39'];
+        $c=['长','短'];
+        $info=[];
+        foreach($a as $k=>$v){
+           foreach($b as $kk=>$vv){
+               foreach($c as $kkk=>$vvv){
+                    $info[]=[$v.$vv.$vvv];
+               }
+           }
+            
+        }
+        dd($info);
         $ak="5V9DkGEmJygwe82t-jZ35FryoV_EXmMZd5bIuz2t";
         $sk="DkHe43_m7Ox_0U8c447DpqWED2JIAMpjrg-1brXc";
         $bucket="1902qiaozhiwei";

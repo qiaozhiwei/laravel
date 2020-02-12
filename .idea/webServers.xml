@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="5e58ef1d-6c66-4b04-9194-2efd49936668" name="laravel" url="http://123.57.18.167">
-        <fileTransfer host="123.57.18.167" port="22" rootFolder="/data/wwwroot/default/laravel" accessType="SFTP">
+        <fileTransfer host="123.57.18.167" port="22" rootFolder="/data" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

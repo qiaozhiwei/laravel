@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class User
+class islogin
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,10 @@ class User
      */
     public function handle($request, Closure $next)
     {
-        // dd($request->session()->get('password'));
-        if (($request->session()->has('user_name'))==false) {
-            return redirect('user/login');
+        if (($request->session()->has('index_userName'))==false) {
+            // echo 111;
+            // dd($request->session('user_name'));
+            return redirect('live_user/index_login');
         }
         return $next($request);
     }

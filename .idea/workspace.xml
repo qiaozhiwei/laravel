@@ -2,12 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62d049fa-2676-41d9-9608-478547569184" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/api/goodsinfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/api/goodsinfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layout/goodsparent.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/goodsparent.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/good/goods.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/good/goods.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/index/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/index/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index/cate_index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index/cate_index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index/cate_update.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index/cate_update.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index/img_upload.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index/img_upload.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index/music_upload.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index/music_upload.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index/upload.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index/upload.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layout/userparent.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/userparent.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/d2bfcba9cc57767e1907e8330581c592891ecf7a.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/d2bfcba9cc57767e1907e8330581c592891ecf7a.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/16c1ded4fe5c7ce2dcb633b2555a7dcabdc93350.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/16c1ded4fe5c7ce2dcb633b2555a7dcabdc93350.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/1a4a173ac960888d483bfdab4d2083bf58819c8b.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/1a4a173ac960888d483bfdab4d2083bf58819c8b.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/1f6512f7b1fe66faf53a1f08c2a412dc2370c2a6.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/1f6512f7b1fe66faf53a1f08c2a412dc2370c2a6.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/51f9643b46be03d07441cc0242d964145acbdbf0.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/51f9643b46be03d07441cc0242d964145acbdbf0.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/84f58c0d00581549237959a64b45fbd1e53d5b1c.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/84f58c0d00581549237959a64b45fbd1e53d5b1c.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/a5f634194c37815b0f93af1d0a982fc4a1d40c7a.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/a5f634194c37815b0f93af1d0a982fc4a1d40c7a.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,20 +46,67 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="105" column="54" lean-forward="true" selection-start-line="105" selection-start-column="54" selection-end-line="105" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>cate_update</find>
+      <find>EventKey</find>
+      <find>even</find>
+      <find>推送</find>
+      <find>send</find>
+      <find>use</find>
+      <find>get</find>
+      <find>login_userInfo</find>
+      <find>login_userInfos</find>
+      <find>login_usersInfo</find>
+      <find>login_data</find>
+      <find>a</find>
+      <find>ddddddd</find>
+      <find>fffffff</find>
+      <find>ggggggg</find>
+      <find>'user'.$frame-&gt;fd</find>
+      <find>hhhhhh</find>
+      <find>jjjjjjj</find>
+      <find>llllll</find>
+      <find>zzzzzz</find>
+      <find>dump</find>
+      <find>con</find>
+      <find>nnnnnn</find>
+      <find>asasasas</find>
+      <find>adawdasd</find>
+      <find>ksksksskskks</find>
+      <find>jhgfghjk</find>
+      <find>adwadsawww</find>
+      <find>Aliplayer</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="&lt;5e58ef1d-6c66-4b04-9194-2efd49936668&gt;/resources/views/index/cate_index.blade.php" />
+        <option value="&lt;5e58ef1d-6c66-4b04-9194-2efd49936668&gt;/app/Http/Controllers/index/index.php" />
+        <option value="&lt;5e58ef1d-6c66-4b04-9194-2efd49936668&gt;/resources/views/layout/userparent.blade.php" />
+        <option value="&lt;5e58ef1d-6c66-4b04-9194-2efd49936668&gt;/routes/web.php" />
+        <option value="&lt;5e58ef1d-6c66-4b04-9194-2efd49936668&gt;/app/Http/Controllers/wechat.php" />
+        <option value="&lt;5e58ef1d-6c66-4b04-9194-2efd49936668&gt;/register.php" />
+        <option value="&lt;5e58ef1d-6c66-4b04-9194-2efd49936668&gt;/doregister.php" />
+        <option value="&lt;5e58ef1d-6c66-4b04-9194-2efd49936668&gt;/index.php" />
+        <option value="&lt;5e58ef1d-6c66-4b04-9194-2efd49936668&gt;/dologin.php" />
+        <option value="&lt;5e58ef1d-6c66-4b04-9194-2efd49936668&gt;/login2.php" />
+        <option value="&lt;5e58ef1d-6c66-4b04-9194-2efd49936668&gt;/server.php" />
+        <option value="&lt;5e58ef1d-6c66-4b04-9194-2efd49936668&gt;/login3.php" />
+        <option value="&lt;5e58ef1d-6c66-4b04-9194-2efd49936668&gt;/server2.php" />
+        <option value="&lt;5e58ef1d-6c66-4b04-9194-2efd49936668&gt;/list.php" />
+        <option value="$PROJECT_DIR$/app/User.php" />
+        <option value="&lt;5e58ef1d-6c66-4b04-9194-2efd49936668&gt;/envelopes.php" />
+        <option value="&lt;5e58ef1d-6c66-4b04-9194-2efd49936668&gt;/login.php" />
+        <option value="&lt;5e58ef1d-6c66-4b04-9194-2efd49936668&gt;/wwwroot/index.php" />
+      </list>
+    </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -164,7 +224,25 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="laravel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="laravel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="laravel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="laravel" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
@@ -174,6 +252,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RunDashboard">
@@ -209,18 +288,36 @@
       <workItem from="1573029249836" duration="687000" />
       <workItem from="1573793962990" duration="17000" />
       <workItem from="1573794915757" duration="656000" />
+      <workItem from="1574835395495" duration="2246000" />
+      <workItem from="1574924765636" duration="14691000" />
+      <workItem from="1575516071354" duration="599000" />
+      <workItem from="1575876890203" duration="594000" />
+      <workItem from="1576059696184" duration="45713000" />
+      <workItem from="1576202811309" duration="18316000" />
+      <workItem from="1576285087900" duration="4973000" />
+      <workItem from="1576386138710" duration="17974000" />
+      <workItem from="1576456744227" duration="21523000" />
+      <workItem from="1576539921369" duration="27181000" />
+      <workItem from="1576655418567" duration="8098000" />
+      <workItem from="1576718050942" duration="12042000" />
+      <workItem from="1577061807524" duration="40680000" />
+      <workItem from="1577241787681" duration="390000" />
+      <workItem from="1577243115673" duration="375000" />
+      <workItem from="1577668740920" duration="1322000" />
+      <workItem from="1580214314353" duration="4722000" />
+      <workItem from="1581061758714" duration="14000" />
+      <workItem from="1581333072773" duration="66000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6475000" />
+    <option name="totallyTimeSpent" value="227994000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.17857143" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49892703" weight="0.18017058" />
+      <window_info id="Structure" order="1" sideWeight="0.50107294" side_tool="true" weight="0.18017058" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -237,7 +334,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Remote Host" order="3" weight="0.32995737" />
+      <window_info anchor="right" id="Remote Host" order="3" weight="0.32942432" />
       <window_info anchor="right" id="Database" order="4" weight="0.32995737" />
     </layout>
   </component>
@@ -261,8 +358,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="105" column="54" lean-forward="true" selection-start-line="105" selection-start-column="54" selection-end-line="105" selection-end-column="54" />
+        <state relative-caret-position="523">
+          <caret line="108" column="12" selection-start-line="108" selection-start-column="12" selection-end-line="108" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="19" column="63" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/phpstudys/PHPTutorial/WWW/MVC/common/DB.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="53" column="42" lean-forward="true" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
         </state>
       </provider>
     </entry>

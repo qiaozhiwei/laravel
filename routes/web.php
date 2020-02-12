@@ -104,7 +104,33 @@ Route::group(['middleware' => ['login']], function () {
    
 
 Route::group(['middleware' => ['User']], function () {
+    });
     
+
+    Route::get('/index/index','index\index@index');
+    Route::get('/index/music_upload','index\index@music_upload');
+    Route::post('/index/doupload','index\index@doupload');
+    Route::get('/index/access_token','index\index@access_token');
+    Route::get('/index/img_upload','index\index@img_upload');
+    Route::get('/index/qny_token','index\index@qny_token');
+    Route::get('/index/cate_create','index\index@cate_create');
+    Route::get('/index/cate_index','index\index@cate_index');
+    Route::get('/index/cate_update','index\index@cate_update');
+    Route::get('/index/vedio','index\index@vedio');
+    Route::post('/index/do_mupload','index\index@do_mupload');
+    Route::get('/index/upload','index\index@upload');
+    Route::get('/index/get_vedio','index\index@get_vedio');
+    Route::post('/index/docreate_cate','index\index@docreate_cate');
+    Route::get('/index/cate_delete','index\index@cate_delete');
+    Route::post('/index/doupdate_cate','index\index@doupdate_cate');
+    Route::get('/index/get_img','index\index@get_img');
+    Route::get('/user/qq_login','user\user@qq_login');
+    Route::get('/index/get_cate','index\index@get_cate');
+    Route::get('/index/get_where_cate','index\index@get_where_cate');
+    Route::get('/index/create_history','index\index@create_history');
+    Route::get('/index/history_index','index\index@history_index');
+    Route::get('/index/history_del','index\index@history_del');
+    Route::get('/index/song_list','index\index@song_list');
 
     //留言  练习
     Route::any('/text/index','text@index');
@@ -145,7 +171,12 @@ Route::group(['middleware' => ['state']], function () {
 
 });
 
-});
+
+Route::get('/user/get_code','user\user@get_code');
+
+Route::get('/user/login','user\user@login');
+Route::post('/user/dologin','user\user@dologin');
+
 
 //新闻
     Route::get('/news/index','news@index');
@@ -299,31 +330,67 @@ Route::group(['middleware' => ['state']], function () {
     Route::get('/test/register','api\test@register');
     Route::get('/test/do_register','api\test@do_register');
     Route::post('/test/order','api\test@order');
-    Route::get('/user/login','user\user@login');
-    Route::get('/user/get_code','user\user@get_code');
-    Route::post('/user/dologin','user\user@dologin');
-    Route::get('/index/index','index\index@index');
-    Route::get('/index/music_upload','index\index@music_upload');
-    Route::post('/index/doupload','index\index@doupload');
-    Route::get('/index/access_token','index\index@access_token');
-    Route::get('/index/img_upload','index\index@img_upload');
-    Route::get('/index/qny_token','index\index@qny_token');
-    Route::get('/index/cate_create','index\index@cate_create');
-    Route::get('/index/cate_index','index\index@cate_index');
-    Route::get('/index/cate_update','index\index@cate_update');
-    Route::get('/index/vedio','index\index@vedio');
-    Route::post('/index/do_mupload','index\index@do_mupload');
-    Route::get('/index/upload','index\index@upload');
-    Route::get('/index/get_vedio','index\index@get_vedio');
-    Route::post('/index/docreate_cate','index\index@docreate_cate');
-    Route::get('/index/cate_delete','index\index@cate_delete');
-    Route::post('/index/doupdate_cate','index\index@doupdate_cate');
-    Route::get('/user/qq_login','user\user@qq_login');
+
+      //登陆
+      Route::get('/live_user/login','live\live_user@login');
+      Route::post('/live_user/dologin','live\live_user@dologin');
+
     
     
+    //球赛后台管理系统
+   
+
+        Route::group(['middleware' => ['live_users']], function () {
+        Route::get('/live_user/list','live\live_user@list');
+        Route::get('/live_user/create','live\live_user@create');
+        Route::post('/live_user/docreate','live\live_user@docreate');
+        Route::get('/live_user/index','live\live_user@index');
+        Route::get('/live_user/create_team','live\live_user@create_team');
+        Route::post('/live_user/docreate_team','live\live_user@docreate_team');
+        
+});
+        
+Route::get('/live_user/index_login','live\live_user@index_login');
+Route::post('/live_user/index_dologin','live\live_user@index_dologin');
+    
+
+    Route::group(['middleware' => ['islogin']], function () {
+
+
+    Route::get('/live_user/chat','live\live_user@chat');
+    Route::get('/live_user/redi','live\live_user@redi');
+    Route::get('/live_user/choose_first','live\live_user@choose_first');
+    Route::get('/live_user/team_match','live\live_user@team_match');
+    Route::get('/live_user/choose_player','live\live_user@choose_player');
+
+    
+});
+    //抓取
+Route::get('/live_user/Grasp','live\live_user@Grasp');
+    
+
     
     
-    
+Route::get('/act/create_act','test\act@create_act');
+Route::post('/act/docreate_act','test\act@docreate_act');
+Route::get('/act/act_index','test\act@act_index');
+Route::get('/act/sign','test\act@sign');
+Route::post('/act/dosign','test\act@dosign');
+Route::get('/act/sign_list','test\act@sign_list');
+Route::get('/act/aaa','test\act@aaa');
+
+
+//cs
+Route::get('/cs_user/create_user','cs\user@create_user');
+Route::get('/cs_user/list_user','cs\user@list_user');
+Route::get('/dis/create_line','cs\dis@create_line');
+Route::post('/dis/docreate_line','cs\dis@docreate_line');
+
+
+
+
+
+
     
     
     

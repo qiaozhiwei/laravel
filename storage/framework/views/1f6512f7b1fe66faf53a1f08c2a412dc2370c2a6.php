@@ -7,11 +7,11 @@
     </tr>
     <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <tr>
-        <td><?php echo e($item->id); ?></td>
+        <td><?php echo e($item->c_id); ?></td>
         <td><?php echo e($item->c_name); ?></td>
         <td>
-        <a href="<?php echo e(url('index/cate_delete')); ?>?id=<?php echo e($item->id); ?>">删除</a>
-        <a href="<?php echo e(url('index/cate_update')); ?>?id=<?php echo e($item->id); ?>">修改</a>
+        <a href="<?php echo e(url('index/cate_delete')); ?>?id=<?php echo e($item->c_id); ?>">删除</a>
+        <a href="<?php echo e(url('index/cate_update')); ?>?id=<?php echo e($item->c_id); ?>">修改</a>
         </td>
     </tr>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -114,9 +114,6 @@
                                 <a href="{{url('index/cate_create')}}">添加分类</a>
                             </li>
                             <li>
-                                <a href="{{url('index/cate_update')}}">编辑分类</a>
-                            </li>
-                            <li>
                                 <a href="{{url('index/cate_index')}}">分类列表</a>
                             </li>
                            
