@@ -388,6 +388,18 @@ Route::post('/dis/docreate_line','cs\dis@docreate_line');
 
 
 
+Route::get('/tran/addUser','tran\admin@addUser');
+Route::get('/tran/adminindex','tran\admin@adminindex');
+Route::get('/tran/login','tran\admin@login');
+Route::post('/tran/do_adminlogin','tran\admin@do_adminlogin');
+Route::post('/tran/doaddUser','tran\admin@doaddUser');
+Route::get('/tran/index','tran\admin@index');
+Route::get('/tran/addvideo','tran\admin@addvideo');
+Route::get('/tran/tran','tran\admin@tran');
+
+
+
+
 
 
 
